@@ -17,10 +17,6 @@ export const Layout = ({ children }: { children?: React.ReactNode }) => {
             >
                 <Header />
                 {children}
-                {/* <Button
-                    onClick={toggleColorScheme}>
-                    111
-                </Button> */}
             </div>
         </div>
     )

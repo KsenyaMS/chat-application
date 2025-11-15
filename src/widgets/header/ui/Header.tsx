@@ -1,7 +1,7 @@
 import { CssComponent } from "../../../shared";
-import { MenuButton, ThemeButton, UserType } from "../../../features";
-import { useUserInfo } from "../../authorization-form";
-import { Stack } from "@mantine/core";
+import { LogOutButton, MenuButton, ThemeButton, UserType } from "../../../features";
+import { Box } from "@mantine/core";
+import { useSessionProvider } from "../../authorization-form";
 
 const css: CssComponent = {
     header: {
@@ -16,14 +16,19 @@ const css: CssComponent = {
 }
 
 export const Header = () => {
-    const { user } = useUserInfo();
+    const { userType } = useSessionProvider();
 
     return <div style={css.header}>
-        <Stack>
-            {user.userType == UserType.User &&
+        <Box>
+            {userType == UserType.User &&
                 <MenuButton />
             }
-        </Stack>
-        <ThemeButton />
+        </Box>
+        <Box display={'flex'} style={{ gap: 20 }}>
+            <ThemeButton />
+            {userType == UserType.User &&
+                <LogOutButton />
+            }
+        </Box>
     </div>
 }

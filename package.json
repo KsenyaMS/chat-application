@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"json-server -w src/shared/config/database/fake-db.json -s /\" \"open-cli http://localhost:3000\"",
+    "start": "json-server db.json"
   },
   "author": "",
   "license": "ISC",
@@ -18,13 +20,16 @@
     "@tabler/icons-react": "^3.35.0",
     "@vitejs/plugin-react": "^4.7.0",
     "axios": "^1.13.1",
+    "concurrently": "^9.2.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "i": "^0.3.7",
     "jotai": "^2.15.0",
+    "json-server": "^1.0.0-beta.3",
     "md5": "^2.3.0",
     "notistack": "^3.0.2",
     "npm": "^10.9.4",
+    "open-cli": "^8.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.65.0",

@@ -1,0 +1,29 @@
+{
+  "login": [
+    {
+      "id": "d6a1",
+      "email": "12345@mail.ru",
+      "password": "3435trwfr3efdqr",
+      "firstName": "Ksenia",
+      "lastName": "K"
+    },
+    {
+      "id": "939c",
+      "email": "54321@mail.ru",
+      "password": "fewdvwedvefd32322",
+      "firstName": "Alex",
+      "lastName": "D"
+    }
+  ],
+  "session": [
+    {
+      "id": "25278b12800f6de48345762a328e6127",
+      "userInfo": {
+        "id": "d6a1",
+        "firstName": "Ksenia",
+        "lastName": "K",
+        "email": "12345@mail.ru"
+      }
+    }
+  ]
+}

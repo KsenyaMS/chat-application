@@ -1,2 +1,2 @@
-export * from './AuthorizationProvider';
+export * from './SessionProvider';
 export * from './AuthorizationValidationSchema';

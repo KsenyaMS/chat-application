@@ -1,19 +1,12 @@
-import { useState } from 'react';
 import {
-    Anchor,
     Button,
-    Container,
-    Group,
-    Paper,
-    PasswordInput,
-    Text,
-    TextInput,
 } from '@mantine/core';
-import { useForm, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
+import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
-import { ForgotPasswordButton, RegistrationButton } from '../../../features';
-import { AuthorizationSchema } from '../../../widgets/authorization-form';
+import { AuthorizationSchema, useSessionProvider } from '../../../widgets/authorization-form';
 import md5 from 'md5';
+import { getSession, singIn } from '../model';
+import { useNavigate } from 'react-router-dom';
 
 export type AuthorizationFormProps = {
     handleSubmit: UseFormHandleSubmit<{
@@ -27,31 +20,16 @@ export type AuthorizationFormProps = {
 }
 
 export const AuthorizationButton = ({ handleSubmit, setErrorObj }: AuthorizationFormProps) => {
+    const navigate = useNavigate();
+    const { setToken } = useSessionProvider();
     const onSubmit: SubmitHandler<AuthorizationSchema> = async (data) => {
-        console.log({ data });
-
         try {
             const res = await AuthorizationSchema.parseAsync(data);
-            console.log({ res });
-
-            const passwordHash = md5(data.password);
-            // const correctUser = userList
-            //     .find(item => item.email === data.email && item.password === passwordHash);
-
-            // if (!correctUser) {
-            //     setErrorObj({
-            //         auth: {
-            //             message: 'Неверное имя пользователя или пароль'
-            //         }
-            //     })
-            //     return;
-            // }
-
-            // const params: User = {
-            //     userType: UserType.User,
-            //     id: correctUser.id,
-            // }
-            // handleAuthorizationButtonClick(params);
+            // const passwordHash = md5(data.password);
+            const token = await singIn({ email: res.email, password: res.password });
+            await getSession(token);
+            setToken(token);
+            navigate('/profile');
         }
         catch (err) {
             if (err instanceof z.ZodError) {
