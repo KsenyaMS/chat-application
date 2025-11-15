@@ -74,10 +74,10 @@ export const createUser = async (params: UserInfo) => {
             throw new Error('Пользователь с такими данными уже существует! Измените имя или email.');
         }
 
-        const id = (await axios.post(`${BASE_URL}/user`, params)).data;
-        const token = md5(`${id}_${params.password}`);
+        const userInfo = (await axios.post<UserInfo>(`${BASE_URL}/user`, params)).data;
+        const token = md5(`${userInfo.id}_${params.password}`);
 
-        await createSession({ userInfo: { ...params, id }, id: token })
+        await createSession({ userInfo, id: token })
 
         return token;
     }
