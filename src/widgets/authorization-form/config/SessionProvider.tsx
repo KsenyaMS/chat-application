@@ -76,6 +76,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
     const setToken = (token: string) => {
         setSessionParams({ ...sessionParams, id: token });
         localStorage.setItem('token', token);
+        setUserType(UserType.User);
     }
 
     useEffect(() => {
