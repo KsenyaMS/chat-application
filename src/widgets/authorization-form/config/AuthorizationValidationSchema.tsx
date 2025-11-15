@@ -1,6 +1,5 @@
 import { z } from 'zod';
-
-const emailRegexp = new RegExp('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$');
+import { emailRegexp } from './const';
 
 export const AuthorizationSchema = z.object({
     email: z

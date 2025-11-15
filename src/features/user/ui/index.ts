@@ -4,3 +4,4 @@ export * from './AuthorizationButton';
 export * from './PasswordInputWithValidation';
 export * from './EmailInputWithValidation';
 export * from './LogOutButton';
+export * from './TextInputWithValidation';

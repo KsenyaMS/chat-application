@@ -4,19 +4,12 @@ import {
     Paper,
 } from '@mantine/core';
 import { useForm } from "react-hook-form";
-import { AuthorizationSchema } from '../config';
-import { AuthorizationButton, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
-import { useNavigate } from 'react-router-dom';
-import { SimpleButton } from '../../../shared';
+import { RegistrationSchema } from '../config';
+import { EmailInputWithValidation, PasswordInputWithValidation, RegistrationButton, TextInputWithValidation } from '../../../features';
 
-export const AuthorizationForm = () => {
-    const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<AuthorizationSchema>();
+export const RegistrationForm = () => {
+    const { register, handleSubmit } = useForm<RegistrationSchema>();
     const [errorObj, setErrorObj] = useState<{ [key: string]: { message: string } }>();
-
-    const handleClick = () => {
-        navigate('/registration');
-    }
 
     return (
         <Container size={420} my={40}>
@@ -27,6 +20,18 @@ export const AuthorizationForm = () => {
                 mt={30}
                 radius="md"
             >
+                <TextInputWithValidation
+                    errorObj={errorObj}
+                    register={register}
+                    code='firstName'
+                    text='Имя'
+                />
+                <TextInputWithValidation
+                    errorObj={errorObj}
+                    register={register}
+                    code='lastName'
+                    text='Фамилия'
+                />
                 <EmailInputWithValidation
                     errorObj={errorObj}
                     register={register}
@@ -35,15 +40,9 @@ export const AuthorizationForm = () => {
                     errorObj={errorObj}
                     register={register}
                 />
-
-                <ForgotPasswordButton />
-                <AuthorizationButton
+                <RegistrationButton
                     handleSubmit={handleSubmit}
                     setErrorObj={(errorObj) => setErrorObj(errorObj)}
-                />
-                <SimpleButton
-                    text={'Зарегистрироваться'}
-                    onClick={handleClick}
                 />
             </Paper>
         </Container>

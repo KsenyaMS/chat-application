@@ -5,7 +5,7 @@ import md5 from 'md5';
 
 const getUserList = async () => {
     try {
-        return (await axios.get<UserInfo[]>(`${BASE_URL}/login`)).data;
+        return (await axios.get<UserInfo[]>(`${BASE_URL}/user`)).data;
     }
     catch {
         throw new Error('При авторизации пользователя возникла ошибка!');
@@ -62,5 +62,26 @@ export const getSession = async (token: string | undefined) => {
     }
     catch {
         throw new Error('При получении данных о сессии возникла ошибка!');
+    }
+}
+
+export const createUser = async (params: UserInfo) => {
+    try {
+        const userList = await getUserList();
+        const user = userList?.find(item => item.email === params.email || item.firstName === params.firstName);
+
+        if (user) {
+            throw new Error('Пользователь с такими данными уже существует! Измените имя или email.');
+        }
+
+        const id = (await axios.post(`${BASE_URL}/user`, params)).data;
+        const token = md5(`${id}_${params.password}`);
+
+        await createSession({ userInfo: { ...params, id }, id: token })
+
+        return token;
+    }
+    catch {
+        throw new Error('При создании сессии возникла ошибка!');
     }
 }

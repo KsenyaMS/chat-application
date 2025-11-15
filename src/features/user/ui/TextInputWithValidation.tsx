@@ -7,25 +7,32 @@ const css = {
     }
 }
 
-export type EmailInputWithValidationProps = {
+export type TextInputWithValidationProps = {
     errorObj?: { [key: string]: { message: string } },
-    register: UseFormRegister<any>
+    register: UseFormRegister<any>,
+    code: string,
+    text: string,
 }
 
-export const EmailInputWithValidation = ({ errorObj, register }: EmailInputWithValidationProps) => {
+export const TextInputWithValidation = ({
+    errorObj,
+    register,
+    code,
+    text,
+}: TextInputWithValidationProps) => {
     const mantineTheme = useMantineTheme();
 
     return <>
         <TextInput
-            label="Email"
-            placeholder="user_name@mail.ru"
+            label={text}
+            placeholder={text}
             required
             radius="md"
-            {...register("email")}
+            {...register(code)}
         />
-        {errorObj?.['email'] &&
+        {errorObj?.[code] &&
             <Text style={{ ...css.errorTextStyle, color: mantineTheme.colors.red[8] }}>
-                {errorObj['email'].message}
+                {errorObj[code].message}
             </Text>
         }
     </>

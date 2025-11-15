@@ -9,10 +9,7 @@ const css = {
 
 export type PasswordInputWithValidationProps = {
     errorObj?: { [key: string]: { message: string } },
-    register: UseFormRegister<{
-        email: string;
-        password: string;
-    }>
+    register: UseFormRegister<any>
 }
 
 export const PasswordInputWithValidation = ({ errorObj, register }: PasswordInputWithValidationProps) => {
