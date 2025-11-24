@@ -6,6 +6,7 @@ import { createUser, getSession } from '../model';
 import { SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import { RegistrationSchema, useSessionProvider } from '../../../widgets';
 import z from 'zod';
+import { routeData } from '../../../shared';
 
 type RegistrationButtonProps = {
     handleSubmit: UseFormHandleSubmit<{
@@ -33,7 +34,7 @@ export const RegistrationButton = ({ handleSubmit, setErrorObj }: RegistrationBu
             const token = await createUser(res);
             await getSession(token);
             setToken(token);
-            navigate('/profile');
+            navigate(routeData.forgotPasswordPage.path);
         }
         catch (err) {
             if (err instanceof z.ZodError) {

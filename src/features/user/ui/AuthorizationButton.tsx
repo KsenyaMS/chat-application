@@ -7,6 +7,7 @@ import { AuthorizationSchema, useSessionProvider } from '../../../widgets/author
 import md5 from 'md5';
 import { getSession, singIn } from '../model';
 import { useNavigate } from 'react-router-dom';
+import { routeData } from '../../../shared';
 
 export type AuthorizationFormProps = {
     handleSubmit: UseFormHandleSubmit<{
@@ -29,7 +30,7 @@ export const AuthorizationButton = ({ handleSubmit, setErrorObj }: Authorization
             const token = await singIn({ email: res.email, password: res.password });
             await getSession(token);
             setToken(token);
-            navigate('/profile');
+            navigate(routeData.profilePage.path);
         }
         catch (err) {
             if (err instanceof z.ZodError) {

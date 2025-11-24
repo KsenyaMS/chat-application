@@ -1,32 +1,25 @@
-import React from 'react';
-import { useMantineTheme, useMantineColorScheme, Button } from '@mantine/core';
-
-const css: { [key: string]: any } = {
-    layout: {
-        width: '100vw',
-        height: '100vh',
-        boxSizing: 'border-box',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    contentWrap: {
-        width: '850px',
-        minWidth: '700px',
-        maxWidth: '1000px',
-        height: '550px',
-        minHeight: '400px',
-        maxHeight: '600px',
-        overflowY: 'auto',
-        borderRadius: '10px',
-    }
-}
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthorizationForm, RegistrationForm, useSessionProvider } from "../../../widgets"
+import { getRouteCode, RouteCode, routeData } from "../../../shared";
+import { useEffect } from "react";
+import { UserType } from "../../../features";
 
 export const AuthorizationPage = () => {
-    const mantineTheme = useMantineTheme();
+    const navigate = useNavigate();
+    const { userType } = useSessionProvider();
+    const { pathname } = useLocation();
+    const routeCode = getRouteCode(pathname);
+
+    useEffect(() => {
+        if (userType === UserType.User)
+            navigate(routeData.forgotPasswordPage.path);
+    }, [userType]);
 
     return (
         <div>
+            {routeCode === RouteCode.Authorization && <AuthorizationForm />}
+            {routeCode === RouteCode.Registration && <RegistrationForm />}
+            {routeCode === RouteCode.Registration && <></>}
         </div>
     )
 }

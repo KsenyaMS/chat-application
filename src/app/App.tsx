@@ -10,10 +10,10 @@ export const App = () => {
             <SessionProvider>
                 <Layout>
                     <Routes>
-                        {routeData.map(route =>
+                        {Object.keys(routeData).map(key =>
                             <Route
-                                path={route.path}
-                                element={route.element}
+                                path={routeData[key].path}
+                                element={routeData[key].element}
                             />
                         )}
                     </Routes>

@@ -2,6 +2,7 @@ import { getSession, SessionParams, signOut, UserType } from '../../../features'
 import { createContext, JSX, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';
+import { routeData } from '../../../shared';
 
 // Задержка для проверки бездействия пользователя 1 минута
 const INTERVAL_DELAY_MS = 60000;
@@ -70,7 +71,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
         setUserType(UserType.Guest);
         localStorage.removeItem('token');
         setSessionParams(defaultUserParams.sessionParams);
-        navigate(`/login`);
+        navigate(routeData.authorizationPage.path);
     }, []);
 
     const setToken = (token: string) => {

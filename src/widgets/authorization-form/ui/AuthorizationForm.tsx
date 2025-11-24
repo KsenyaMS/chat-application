@@ -7,15 +7,15 @@ import { useForm } from "react-hook-form";
 import { AuthorizationSchema } from '../config';
 import { AuthorizationButton, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
 import { useNavigate } from 'react-router-dom';
-import { SimpleButton } from '../../../shared';
+import { routeData, SimpleButton } from '../../../shared';
 
 export const AuthorizationForm = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<AuthorizationSchema>();
     const [errorObj, setErrorObj] = useState<{ [key: string]: { message: string } }>();
 
-    const handleClick = () => {
-        navigate('/registration');
+    const handleRegistrationButtonClick = () => {
+        navigate(routeData.registrationPage.path);
     }
 
     return (
@@ -43,7 +43,7 @@ export const AuthorizationForm = () => {
                 />
                 <SimpleButton
                     text={'Зарегистрироваться'}
-                    onClick={handleClick}
+                    onClick={handleRegistrationButtonClick}
                 />
             </Paper>
         </Container>

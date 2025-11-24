@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { AuthorizationForm, RegistrationForm } from "../../widgets"
+import { AuthorizationPage } from "../../pages"
 
 export type RouteObject = {
     label?: string,
@@ -11,33 +11,40 @@ export type RouteObject = {
 export enum RouteCode {
     Authorization = 'authorization',
     Registration = 'registration',
+    ForgotPassword = 'forgot-password',
     Profile = 'profile',
 
 }
 
-export const routeData: RouteObject[] = [
-    {
+export const routeData: { [key: string]: RouteObject } = {
+    basePage: {
         label: 'Базовая страница',
         path: '/',
-        code: RouteCode.Registration,
-        element: <AuthorizationForm />
+        code: RouteCode.Authorization,
+        element: <AuthorizationPage />
     },
-    {
+    authorizationPage: {
         label: 'Авторизация',
         path: '/login',
         code: RouteCode.Authorization,
-        element: <AuthorizationForm />
+        element: <AuthorizationPage />
     },
-    {
+    registrationPage: {
         label: 'Регистрация',
         path: '/registration',
         code: RouteCode.Registration,
-        element: <RegistrationForm />
+        element: <AuthorizationPage />
     },
-    {
+    forgotPasswordPage: {
+        label: 'Забыли пароль',
+        path: '/forgot-password',
+        code: RouteCode.ForgotPassword,
+        element: <AuthorizationPage />
+    },
+    profilePage: {
         label: 'Профиль',
         path: '/profile',
         code: RouteCode.Profile,
         element: <></>
     },
-]
+}
