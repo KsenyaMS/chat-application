@@ -1,4 +1,4 @@
-import { getSession, SessionParams, signOut, UserType } from '../../../features';
+import { getSession, SessionParams, signOut, UserType } from '../..';
 import { createContext, JSX, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';

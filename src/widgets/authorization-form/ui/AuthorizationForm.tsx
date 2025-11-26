@@ -4,8 +4,7 @@ import {
     Paper,
 } from '@mantine/core';
 import { useForm } from "react-hook-form";
-import { AuthorizationSchema } from '../config';
-import { AuthorizationButton, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
+import { AuthorizationButton, AuthorizationSchema, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
 import { useNavigate } from 'react-router-dom';
 import { routeData, SimpleButton } from '../../../shared';
 

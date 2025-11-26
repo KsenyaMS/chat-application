@@ -3,11 +3,11 @@ import {
 } from '@mantine/core';
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
-import { AuthorizationSchema, useSessionProvider } from '../../../widgets/authorization-form';
 import md5 from 'md5';
 import { getSession, singIn } from '../model';
 import { useNavigate } from 'react-router-dom';
 import { routeData } from '../../../shared';
+import { AuthorizationSchema, useSessionProvider } from '../config';
 
 export type AuthorizationFormProps = {
     handleSubmit: UseFormHandleSubmit<{

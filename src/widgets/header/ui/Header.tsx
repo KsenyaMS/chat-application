@@ -1,7 +1,6 @@
 import { CssComponent } from "../../../shared";
-import { LogOutButton, MenuButton, ThemeButton, UserType } from "../../../features";
+import { LogOutButton, MenuButton, ThemeButton, UserType, useSessionProvider } from "../../../features";
 import { Box } from "@mantine/core";
-import { useSessionProvider } from "../../authorization-form";
 
 const css: CssComponent = {
     header: {

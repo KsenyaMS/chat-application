@@ -1,7 +1,7 @@
 import { IconLogout } from '@tabler/icons-react';
 import { IconButton } from "../../../shared";
 import { useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { useSessionProvider } from '../../../widgets';
+import { useSessionProvider } from '../config';
 
 export const LogOutButton = () => {
     const mantineTheme = useMantineTheme();

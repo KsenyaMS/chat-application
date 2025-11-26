@@ -4,9 +4,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { createUser, getSession } from '../model';
 import { SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
-import { RegistrationSchema, useSessionProvider } from '../../../widgets';
 import z from 'zod';
 import { routeData } from '../../../shared';
+import { RegistrationSchema, useSessionProvider } from '../config';
 
 type RegistrationButtonProps = {
     handleSubmit: UseFormHandleSubmit<{

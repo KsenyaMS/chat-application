@@ -1,4 +1,4 @@
-import { PasswordInput, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import { PasswordInput, Text, useMantineTheme } from "@mantine/core";
 import { UseFormRegister } from "react-hook-form";
 
 const css = {

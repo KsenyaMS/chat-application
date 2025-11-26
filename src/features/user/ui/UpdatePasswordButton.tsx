@@ -3,10 +3,10 @@ import {
 } from '@mantine/core';
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
-import { ForgotPasswordSchema, useSessionProvider } from '../../../widgets/authorization-form';
-import { changePassword, ForgotPasswordStep, getSession, singIn } from '../model';
+import { changePassword, getSession } from '../model';
 import { useNavigate } from 'react-router-dom';
 import { routeData } from '../../../shared';
+import { ForgotPasswordSchema, useSessionProvider } from '../config';
 
 export type UpdatePasswordButtonProps = {
     handleSubmit: UseFormHandleSubmit<ForgotPasswordSchema>,
