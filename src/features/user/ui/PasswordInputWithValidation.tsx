@@ -9,10 +9,11 @@ const css = {
 
 export type PasswordInputWithValidationProps = {
     errorObj?: { [key: string]: { message: string } },
-    register: UseFormRegister<any>
+    register: UseFormRegister<any>,
+    code?: string,
 }
 
-export const PasswordInputWithValidation = ({ errorObj, register }: PasswordInputWithValidationProps) => {
+export const PasswordInputWithValidation = ({ errorObj, register, code = 'password' }: PasswordInputWithValidationProps) => {
     const mantineTheme = useMantineTheme();
 
     return <>
@@ -22,14 +23,11 @@ export const PasswordInputWithValidation = ({ errorObj, register }: PasswordInpu
             required
             mt="md"
             radius="md"
-            {...register("password")}
+            {...register(code)}
         />
-        {(errorObj?.['password'] || errorObj?.['auth']) &&
+        {errorObj?.[code] &&
             <Text style={{ ...css.errorTextStyle, color: mantineTheme.colors.red[8] }}>
-                {errorObj['password']
-                    ? errorObj['password'].message
-                    : errorObj['auth'].message
-                }
+                {errorObj[code].message}
             </Text>
         }
     </>

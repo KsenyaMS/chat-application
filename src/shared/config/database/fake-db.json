@@ -1,5 +1,5 @@
 {
-  "login": [
+  "user": [
     {
       "id": "d6a1",
       "email": "12345@mail.ru",
@@ -13,6 +13,34 @@
       "password": "fewdvwedvefd32322",
       "firstName": "Alex",
       "lastName": "D"
+    },
+    {
+      "id": "98e2",
+      "email": "444@mail.ru",
+      "password": "321123123",
+      "firstName": "Новое имя",
+      "lastName": "Новое"
+    },
+    {
+      "id": "8b51",
+      "email": "434@mail.ru",
+      "password": "321333333333333",
+      "firstName": "Марина",
+      "lastName": "Александрова"
+    },
+    {
+      "id": "6089",
+      "email": "777777@mail.ru",
+      "password": "3435trwfr5523412312",
+      "firstName": "Ksenya",
+      "lastName": "Mmmmmmmmmm"
+    },
+    {
+      "id": "8f66",
+      "email": "e2wqedw@mail.ru",
+      "password": "grfrwqascdfe",
+      "firstName": "3rewfdscg",
+      "lastName": "wqfegwrhetjrytku"
     }
   ],
   "session": [

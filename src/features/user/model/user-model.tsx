@@ -85,3 +85,40 @@ export const createUser = async (params: UserInfo) => {
         throw new Error('При создании сессии возникла ошибка!');
     }
 }
+
+export const changePassword = async (params: UserInfo) => {
+    try {
+        const userList = await getUserList();
+        const user = userList?.find(item => item.email === params.email && item.firstName === params.firstName && item.lastName === params.lastName);
+
+        if (!user) {
+            throw new Error('Пользователя с такими данными не существует!');
+        }
+
+        await updateUser({ ...params, id: user.id });
+
+        const token = md5(`${user.id}_${params.password}`);
+        const userInfo = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            secondName: user.secondName,
+            email: user.email,
+        }
+
+        await createSession({ userInfo, id: token })
+        return token;
+    }
+    catch {
+        throw new Error('При смене пароля произошла ошибка!');
+    };
+}
+
+export const updateUser = async (params: UserInfo) => {
+    try {
+        await axios.put<UserInfo>(`${BASE_URL}/user/${params.id}`, params)
+    }
+    catch {
+        throw new Error('При изменении данных пользователя возникла ошибка!');
+    }
+}

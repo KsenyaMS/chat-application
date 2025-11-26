@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { AuthorizationForm, RegistrationForm, useSessionProvider } from "../../../widgets"
+import { AuthorizationForm, ForgotPasswordForm, RegistrationForm, useSessionProvider } from "../../../widgets"
 import { getRouteCode, RouteCode, routeData } from "../../../shared";
 import { useEffect } from "react";
 import { UserType } from "../../../features";
@@ -19,7 +19,7 @@ export const AuthorizationPage = () => {
         <div>
             {routeCode === RouteCode.Authorization && <AuthorizationForm />}
             {routeCode === RouteCode.Registration && <RegistrationForm />}
-            {routeCode === RouteCode.Registration && <></>}
+            {routeCode === RouteCode.ForgotPassword && <ForgotPasswordForm />}
         </div>
     )
 }
