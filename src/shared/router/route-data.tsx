@@ -13,7 +13,8 @@ export enum RouteCode {
     Registration = 'registration',
     ForgotPassword = 'forgot-password',
     Profile = 'profile',
-
+    UserList = 'user-list',
+    MessageList = 'message-list',
 }
 
 export const routeData: { [key: string]: RouteObject } = {
@@ -45,6 +46,18 @@ export const routeData: { [key: string]: RouteObject } = {
         label: 'Профиль',
         path: '/profile',
         code: RouteCode.Profile,
+        element: <></>
+    },
+    userListPage: {
+        label: 'Список пользователей',
+        path: '/user-list',
+        code: RouteCode.UserList,
+        element: <></>
+    },
+    messageListPage: {
+        label: 'Сообщения',
+        path: '/message-list',
+        code: RouteCode.MessageList,
         element: <></>
     },
 }

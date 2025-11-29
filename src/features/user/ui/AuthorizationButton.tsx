@@ -32,7 +32,8 @@ export const AuthorizationButton = ({ handleSubmit, setErrorObj, returnUrl }: Au
             await getSession(token);
             setToken(token);
             if (returnUrl) {
-                navigate(returnUrl);
+                window.location.href = returnUrl;
+                return;
             }
             navigate(`${routeData.profilePage.path}`);
         }

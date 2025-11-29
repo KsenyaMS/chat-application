@@ -1,6 +1,7 @@
 import { CssComponent } from "../../../shared";
-import { LogOutButton, MenuButton, ThemeButton, UserType, useSessionProvider } from "../../../features";
+import { LogOutButton, ThemeButton, UserType, useSessionProvider } from "../../../features";
 import { Box } from "@mantine/core";
+import { HeaderDropdownList } from "./HeaderDropdownList";
 
 const css: CssComponent = {
     header: {
@@ -17,10 +18,11 @@ const css: CssComponent = {
 export const Header = () => {
     const { userType } = useSessionProvider();
 
+
     return <div style={css.header}>
         <Box>
             {userType == UserType.User &&
-                <MenuButton />
+                <HeaderDropdownList />
             }
         </Box>
         <Box display={'flex'} style={{ gap: 20 }}>
