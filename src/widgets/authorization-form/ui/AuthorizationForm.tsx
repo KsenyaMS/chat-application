@@ -5,11 +5,14 @@ import {
 } from '@mantine/core';
 import { useForm } from "react-hook-form";
 import { AuthorizationButton, AuthorizationSchema, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { routeData, SimpleButton } from '../../../shared';
 
 export const AuthorizationForm = () => {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const returnUrl = searchParams.get('returnUrl') ?? '';
+
     const { register, handleSubmit } = useForm<AuthorizationSchema>();
     const [errorObj, setErrorObj] = useState<{ [key: string]: { message: string } }>();
 
@@ -39,6 +42,7 @@ export const AuthorizationForm = () => {
                 <AuthorizationButton
                     handleSubmit={handleSubmit}
                     setErrorObj={(errorObj) => setErrorObj(errorObj)}
+                    returnUrl={returnUrl}
                 />
                 <SimpleButton
                     text={'Зарегистрироваться'}

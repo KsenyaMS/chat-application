@@ -18,9 +18,10 @@ export type AuthorizationFormProps = {
         password: string;
     }>,
     setErrorObj: (errObj: { [key: string]: { message: string } }) => void,
+    returnUrl?: string,
 }
 
-export const AuthorizationButton = ({ handleSubmit, setErrorObj }: AuthorizationFormProps) => {
+export const AuthorizationButton = ({ handleSubmit, setErrorObj, returnUrl }: AuthorizationFormProps) => {
     const navigate = useNavigate();
     const { setToken } = useSessionProvider();
     const onSubmit: SubmitHandler<AuthorizationSchema> = async (data) => {
@@ -30,7 +31,10 @@ export const AuthorizationButton = ({ handleSubmit, setErrorObj }: Authorization
             const token = await singIn({ email: res.email, password: res.password });
             await getSession(token);
             setToken(token);
-            navigate(routeData.profilePage.path);
+            if (returnUrl) {
+                navigate(returnUrl);
+            }
+            navigate(`${routeData.profilePage.path}`);
         }
         catch (err) {
             if (err instanceof z.ZodError) {

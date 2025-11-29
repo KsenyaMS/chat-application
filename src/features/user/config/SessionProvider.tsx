@@ -71,7 +71,10 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
         setUserType(UserType.Guest);
         localStorage.removeItem('token');
         setSessionParams(defaultUserParams.sessionParams);
-        navigate(routeData.authorizationPage.path);
+
+        const params = new URLSearchParams();
+        params.append('returnUrl', window.location.href);
+        navigate(`${routeData.authorizationPage.path}?${params.toString()}`);
     }, []);
 
     const setToken = (token: string) => {
