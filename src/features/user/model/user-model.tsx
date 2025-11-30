@@ -3,7 +3,7 @@ import { BASE_URL } from "../../../shared";
 import { AuthorizationParams, SessionParams, UserInfo } from "./user-model.types";
 import md5 from 'md5';
 
-const getUserList = async () => {
+export const getUserList = async () => {
     try {
         return (await axios.get<UserInfo[]>(`${BASE_URL}/user`)).data;
     }

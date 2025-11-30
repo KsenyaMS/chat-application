@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { AuthorizationPage } from "../../pages"
+import { AuthorizationPage, UserListPage } from "../../pages"
 
 export type RouteObject = {
     label?: string,
@@ -52,7 +52,7 @@ export const routeData: { [key: string]: RouteObject } = {
         label: 'Список пользователей',
         path: '/user-list',
         code: RouteCode.UserList,
-        element: <></>
+        element: <UserListPage />
     },
     messageListPage: {
         label: 'Сообщения',
