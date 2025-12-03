@@ -3,12 +3,12 @@ import { useState } from "react";
 import { MenuButton } from "../../../features";
 import {
     IconUsersGroup,
-    IconMessageCircle,
     IconTrash,
-    IconUser
+    IconUser,
+    IconMessage
 } from '@tabler/icons-react';
 import { useNavigate } from "react-router-dom";
-import { routeData } from "../../../shared";
+import { DropdownList, routeData } from "../../../shared";
 
 export const HeaderDropdownList = () => {
     const navigate = useNavigate();
@@ -32,45 +32,36 @@ export const HeaderDropdownList = () => {
     }
 
     return (
-        <Menu
-            opened={isDropdownListOpen}
-            shadow="md"
-            position="bottom-start"
-            width={220}
-        >
-            <Menu.Target>
+        <DropdownList
+            isDropdownListOpen={isDropdownListOpen}
+            targetButton={
                 <Box>
                     <MenuButton handleClick={() => setIsDropdownListOpen(prev => !prev)} />
                 </Box>
-            </Menu.Target>
-            <Menu.Dropdown>
-                <Menu.Item
-                    leftSection={<IconUser size={14} />}
-                    onClick={handleProfileButtonClick}
-                >
-                    Профиль
-                </Menu.Item>
-                <Menu.Item
-                    leftSection={<IconUsersGroup size={14} />}
-                    onClick={handleUserListButtonClick}
-                >
-                    Список пользователей
-                </Menu.Item>
-                <Menu.Item
-                    leftSection={<IconMessageCircle size={14} />}
-                    onClick={handleMessageListButtonClick}
-                >
-                    Сообщения
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item
-                    color={mantineTheme.colors.red[8]}
-                    leftSection={<IconTrash size={14} />}
-                    onClick={handleDeleteUserButtonClick}
-                >
-                    Удалить аккаунт
-                </Menu.Item>
-            </Menu.Dropdown>
-        </Menu>
+            }
+            list={[
+                {
+                    text: 'Профиль',
+                    handleClick: handleProfileButtonClick,
+                    leftIcon: <IconUser size={14} />
+                },
+                {
+                    text: 'Список пользователей',
+                    handleClick: handleUserListButtonClick,
+                    leftIcon: <IconUsersGroup size={14} />
+                },
+                {
+                    text: 'Сообщения',
+                    handleClick: handleMessageListButtonClick,
+                    leftIcon: <IconMessage size={14} />
+                },
+                {
+                    text: 'Удалить аккаунт',
+                    handleClick: handleDeleteUserButtonClick,
+                    color: mantineTheme.colors.red[8],
+                    leftIcon: <IconTrash size={14} />
+                }
+            ]}
+        />
     )
 }
