@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
-import { getUserList, UserInfo, UserListItem } from './../../features';
-import { Box } from "@mantine/core";
-import { CssComponent } from "../../shared";
-
-const css: CssComponent = {
-    listWrap: {
-    }
-}
+import { getUserList, UserInfo } from './../../features';
+import { SimpleList } from "../../shared";
 
 export const UserList = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -43,11 +37,9 @@ export const UserList = () => {
                 <>Идет загрузка</>
             }
             {!isLoading && userList?.length &&
-                <Box style={css.listWrap}>
-                    {userList.map(userInfo =>
-                        <UserListItem />
-                    )}
-                </Box>
+                <SimpleList
+                    list={userList}
+                />
             }
             {!userList?.length && !isLoading && isError &&
                 <>Произошла ошибка при загрузке данных. Попробуйте перезагрузить страницу или войдите позже</>

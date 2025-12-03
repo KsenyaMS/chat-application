@@ -2,6 +2,13 @@ import React from 'react';
 import { useMantineTheme, useMantineColorScheme } from '@mantine/core';
 import { Header } from '../../header';
 import './Layout.css';
+import { CssComponent } from '../../../shared';
+
+const css: CssComponent = {
+    wrap: {
+        padding: '5px 50px 5px 50px',
+    }
+}
 
 export const Layout = ({ children }: { children?: React.ReactNode }) => {
     const mantineTheme = useMantineTheme();
@@ -16,7 +23,9 @@ export const Layout = ({ children }: { children?: React.ReactNode }) => {
                 }}
             >
                 <Header />
-                {children}
+                <div style={css.wrap}>
+                    {children}
+                </div>
             </div>
         </div>
     )

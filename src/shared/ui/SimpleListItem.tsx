@@ -1,5 +1,7 @@
 import { Box } from "@mantine/core"
 import { CssComponent } from "../model"
+import { DropdownItem } from "./DropdownList"
+import { ReactElement } from "react"
 
 const css: CssComponent = {
     wrap: {
@@ -15,7 +17,21 @@ const css: CssComponent = {
     }
 }
 
-export const SimpleListItem = () => {
+export type SimpleListItem = {
+    avatar: string,
+    primaryText: string,
+    secondaryText?: string,
+    dropdownList?: DropdownItem[],
+    dropdownTargetButton?: ReactElement,
+}
+
+type SimpleListItemProps = {
+    listItem: SimpleListItem
+}
+
+export const SimpleListItem = ({
+    listItem
+}: SimpleListItemProps) => {
     return (
         <Box style={css.wrap}>
             <Box>1</Box>
