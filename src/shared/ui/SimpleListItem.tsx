@@ -1,7 +1,9 @@
-import { Box } from "@mantine/core"
+import { Box, useMantineColorScheme, useMantineTheme } from "@mantine/core"
 import { CssComponent } from "../model"
 import { DropdownItem } from "./DropdownList"
 import { ReactElement } from "react"
+import { SimpleAvatar } from "./SimpleAvatar"
+import { ContainerWithTwoValues } from "./ContainerWithTwoValues"
 
 const css: CssComponent = {
     wrap: {
@@ -13,7 +15,8 @@ const css: CssComponent = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: '10px'
+        marginTop: '10px',
+        paddingLeft: '10px'
     }
 }
 
@@ -32,10 +35,21 @@ type SimpleListItemProps = {
 export const SimpleListItem = ({
     listItem
 }: SimpleListItemProps) => {
+    const mantineTheme = useMantineTheme();
+    const { colorScheme } = useMantineColorScheme();
+
     return (
         <Box style={css.wrap}>
-            <Box>1</Box>
-            <Box>2</Box>
+            <Box>
+                <SimpleAvatar color={mantineTheme.colors.textColor[colorScheme]} />
+            </Box>
+            <Box>
+                <ContainerWithTwoValues
+                    primaryValue={'123'}
+                    secondaryValue={'321'}
+                    primaryValueTooltip={'111'}
+                />
+            </Box>
             <Box>3</Box>
         </Box>
     )
