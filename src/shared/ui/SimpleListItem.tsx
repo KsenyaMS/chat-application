@@ -4,6 +4,7 @@ import { DropdownItem } from "./DropdownList"
 import { ReactElement } from "react"
 import { SimpleAvatar } from "./SimpleAvatar"
 import { ContainerWithTwoValues } from "./ContainerWithTwoValues"
+import { UserItemDropdownList } from "../../widgets"
 
 const css: CssComponent = {
     wrap: {
@@ -50,7 +51,9 @@ export const SimpleListItem = ({
                     primaryValueTooltip={'111'}
                 />
             </Box>
-            <Box>3</Box>
+            <Box>
+                <UserItemDropdownList />
+            </Box>
         </Box>
     )
 }
