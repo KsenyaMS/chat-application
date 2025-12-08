@@ -14,7 +14,7 @@ export const theme = createTheme({
         }),
         textColor: virtualColor({
             name: 'textColor',
-            dark: '#a39696ff',
+            dark: '#d7dcdf',
             light: 'black',
         }),
         // #8147fc

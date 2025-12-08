@@ -10,27 +10,34 @@ const css: CssComponent = {
     wrap: {
         width: '100%',
         height: '50px',
-        background: 'green',
         borderRadius: '8px',
         boxSizing: 'border-box',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: '10px',
-        paddingLeft: '10px'
+        paddingLeft: '10px',
+        paddingRight: '10px',
+    },
+    leftBlock: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        gap: 35,
+        alignItems: 'center',
     }
 }
 
-export type SimpleListItem = {
+export type SimpleListItemType = {
     avatar: string,
     primaryText: string,
     secondaryText?: string,
+    avatarHelperText?: string,
     dropdownList?: DropdownItem[],
     dropdownTargetButton?: ReactElement,
 }
 
 type SimpleListItemProps = {
-    listItem: SimpleListItem
+    listItem: SimpleListItemType
 }
 
 export const SimpleListItem = ({
@@ -38,17 +45,21 @@ export const SimpleListItem = ({
 }: SimpleListItemProps) => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
+    const itemBackgroundIndex = colorScheme === 'light'
+        ? 6
+        : 7;
 
     return (
-        <Box style={css.wrap}>
-            <Box>
-                <SimpleAvatar color={mantineTheme.colors.textColor[colorScheme]} />
-            </Box>
-            <Box>
+        <Box style={{ ...css.wrap, background: mantineTheme.colors.gray[itemBackgroundIndex] }}>
+            <Box style={css.leftBlock}>
+                <SimpleAvatar
+                    link={listItem.avatar}
+                    userName={listItem.avatarHelperText}
+                    color={mantineTheme.colors.textColor[colorScheme]}
+                />
                 <ContainerWithTwoValues
-                    primaryValue={'123'}
-                    secondaryValue={'321'}
-                    primaryValueTooltip={'111'}
+                    primaryValue={listItem.primaryText}
+                    secondaryValue={listItem.secondaryText ?? ''}
                 />
             </Box>
             <Box>

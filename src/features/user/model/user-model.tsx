@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../../../shared";
+import { BASE_URL, getUnixTimeWithoutTimezone } from "../../../shared";
 import { AuthorizationParams, SessionParams, UserInfo } from "./user-model.types";
 import md5 from 'md5';
 
@@ -74,7 +74,15 @@ export const createUser = async (params: UserInfo) => {
             throw new Error('Пользователь с такими данными уже существует! Измените имя или email.');
         }
 
-        const userInfo = (await axios.post<UserInfo>(`${BASE_URL}/user`, params)).data;
+        const newUser = (await axios.post<UserInfo>(`${BASE_URL}/user`, params)).data;
+        const userInfo = {
+            id: newUser.id,
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            secondName: newUser.secondName,
+            email: newUser.email,
+            lastActivityDate: getUnixTimeWithoutTimezone(new Date()),
+        }
         const token = md5(`${userInfo.id}_${params.password}`);
 
         await createSession({ userInfo, id: token })

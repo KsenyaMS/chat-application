@@ -1,5 +1,5 @@
 import { Box } from "@mantine/core";
-import { SimpleListItem } from "./SimpleListItem";
+import { SimpleListItem, SimpleListItemType } from "./SimpleListItem";
 import { CssComponent } from "../model";
 
 const css: CssComponent = {
@@ -16,7 +16,7 @@ const css: CssComponent = {
 }
 
 export type SimpleListProps = {
-    list: SimpleListItem[],
+    list: SimpleListItemType[],
 }
 
 export const SimpleList = ({

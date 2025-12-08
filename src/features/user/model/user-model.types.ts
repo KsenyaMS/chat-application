@@ -15,6 +15,7 @@ export type UserInfo = {
     lastName: string,
     secondName?: string,
     password: string,
+    lastActivityDate: number,
 }
 
 export type SessionParams = {

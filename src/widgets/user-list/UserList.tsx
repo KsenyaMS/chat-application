@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
-import { getUserList, UserInfo } from './../../features';
-import { SimpleList } from "../../shared";
+import { getUserList } from './../../features';
+import { format, getDateWithTimezone, getUserFIO, getUserInitials, SimpleList, SimpleListItemType } from "../../shared";
 
 export const UserList = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
-    const [userList, setUserList] = useState<UserInfo[]>([]);
+    const [userList, setUserList] = useState<SimpleListItemType[]>([]);
     console.log({ userList });
 
 
     const getAllUserList = async () => {
         return getUserList()
             .then(res => {
-                setUserList(res);
+                const data: SimpleListItemType[] = res?.map(userInfo => {
+                    return {
+                        avatar: '',
+                        avatarHelperText: getUserInitials(userInfo),
+                        primaryText: getUserFIO(userInfo),
+                        secondaryText: format(getDateWithTimezone(userInfo.lastActivityDate ?? new Date()), 'dd.MM HH:ss') ?? '',
+                    }
+                })
+                setUserList(data);
             })
             .catch(err => {
                 console.log({ err });
