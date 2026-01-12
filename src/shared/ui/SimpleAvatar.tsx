@@ -14,7 +14,7 @@ export const SimpleAvatar = ({
     return <>
         {link &&
             <Avatar
-                src="avatar.png"
+                src={link}
                 alt="it's me"
                 color={color}
             />

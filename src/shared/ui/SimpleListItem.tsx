@@ -9,7 +9,7 @@ import { UserItemDropdownList } from "../../widgets"
 const css: CssComponent = {
     wrap: {
         width: '100%',
-        height: '50px',
+        height: '60px',
         borderRadius: '8px',
         boxSizing: 'border-box',
         display: 'flex',

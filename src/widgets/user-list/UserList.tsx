@@ -13,8 +13,17 @@ export const UserList = () => {
         return getUserList()
             .then(res => {
                 const data: SimpleListItemType[] = res?.map(userInfo => {
+                    const imageBlob = userInfo?.avatar;
+                    let link = '';
+                    if (imageBlob) {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(imageBlob);
+                        reader.onloadend = () => {
+                            link = reader.result;
+                        };
+                    }
                     return {
-                        avatar: '',
+                        avatar: link,
                         avatarHelperText: getUserInitials(userInfo),
                         primaryText: getUserFIO(userInfo),
                         secondaryText: format(getDateWithTimezone(userInfo.lastActivityDate ?? new Date()), 'dd.MM HH:ss') ?? '',
