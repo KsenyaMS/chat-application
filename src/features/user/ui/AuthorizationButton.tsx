@@ -4,7 +4,7 @@ import {
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
 import md5 from 'md5';
-import { getSession, singIn } from '../model';
+import { getSession, signIn } from '../model';
 import { useNavigate } from 'react-router-dom';
 import { routeData } from '../../../shared';
 import { AuthorizationSchema, useSessionProvider } from '../config';
@@ -28,7 +28,7 @@ export const AuthorizationButton = ({ handleSubmit, setErrorObj, returnUrl }: Au
         try {
             const res = await AuthorizationSchema.parseAsync(data);
             // const passwordHash = md5(data.password);
-            const token = await singIn({ email: res.email, password: res.password });
+            const token = await signIn({ email: res.email, password: res.password });
             await getSession(token);
             setToken(token);
             if (returnUrl) {

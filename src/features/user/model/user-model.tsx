@@ -12,7 +12,7 @@ export const getUserList = async () => {
     };
 }
 
-export const singIn = async (params: AuthorizationParams) => {
+export const signIn = async (params: AuthorizationParams) => {
     try {
         const userList = await getUserList();
         const user = userList?.find(item => item.email === params.email && item.password === params.password);
@@ -28,6 +28,7 @@ export const singIn = async (params: AuthorizationParams) => {
             lastName: user.lastName,
             secondName: user.secondName,
             email: user.email,
+            lastActivityDate: getUnixTimeWithoutTimezone(new Date()),
         }
 
         await createSession({ userInfo, id: token })
@@ -112,6 +113,7 @@ export const changePassword = async (params: UserInfo) => {
             lastName: user.lastName,
             secondName: user.secondName,
             email: user.email,
+            lastActivityDate: getUnixTimeWithoutTimezone(new Date()),
         }
 
         await createSession({ userInfo, id: token })

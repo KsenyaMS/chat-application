@@ -78,7 +78,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
     }, []);
 
     const setToken = (token: string) => {
-        setSessionParams({ ...sessionParams, id: token });
+        setSessionParams(prev => ({ ...prev, id: token }));
         localStorage.setItem('token', token);
         setUserType(UserType.User);
     }
@@ -114,7 +114,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
 
     useEffect(() => {
         refreshSession();
-    }, []);
+    }, [refreshSession]);
 
     return (
         <SessionContext.Provider
