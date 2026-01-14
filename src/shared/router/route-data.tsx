@@ -15,6 +15,7 @@ export enum RouteCode {
     Profile = 'profile',
     UserList = 'user-list',
     MessageList = 'message-list',
+    Dialog = 'dialog',
 }
 
 export const routeData: { [key: string]: RouteObject } = {
@@ -57,6 +58,12 @@ export const routeData: { [key: string]: RouteObject } = {
     messageListPage: {
         label: 'Сообщения',
         path: '/message-list',
+        code: RouteCode.MessageList,
+        element: <></>
+    },
+    dialogPage: {
+        label: 'Диалог',
+        path: '/dialog/:dialogId',
         code: RouteCode.MessageList,
         element: <></>
     },

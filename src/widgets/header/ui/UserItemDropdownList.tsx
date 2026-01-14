@@ -13,8 +13,8 @@ export const UserItemDropdownList = () => {
     const navigate = useNavigate();
     const [isDropdownListOpen, setIsDropdownListOpen] = useState<boolean>(false);
 
-    const handleMessageListButtonClick = () => {
-        navigate(routeData.messageListPage.path)
+    const handleDialogButtonClick = () => {
+        navigate(routeData.dialogPage.path)
     }
 
     return (
@@ -33,7 +33,7 @@ export const UserItemDropdownList = () => {
             list={[
                 {
                     text: 'Написать сообщение',
-                    handleClick: handleMessageListButtonClick,
+                    handleClick: handleDialogButtonClick,
                     leftIcon: <IconMessage size={14} />
                 },
             ]}

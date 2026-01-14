@@ -32,8 +32,7 @@ export type SimpleListItemType = {
     primaryText: string,
     secondaryText?: string,
     avatarHelperText?: string,
-    dropdownList?: DropdownItem[],
-    dropdownTargetButton?: ReactElement,
+    rightContent?: ReactElement,
 }
 
 type SimpleListItemProps = {
@@ -63,7 +62,7 @@ export const SimpleListItem = ({
                 />
             </Box>
             <Box>
-                <UserItemDropdownList />
+                {listItem?.rightContent && listItem.rightContent}
             </Box>
         </Box>
     )

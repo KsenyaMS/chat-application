@@ -7,6 +7,7 @@ import { CssComponent } from '../../../shared';
 const css: CssComponent = {
     wrap: {
         padding: '5px 50px 5px 50px',
+        height: '90%',
     }
 }
 

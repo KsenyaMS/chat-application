@@ -6,7 +6,7 @@ import { Box } from "@mantine/core";
 export const UserListPage = () => {
     const [search, setSearch] = useState<string>('');
 
-    return <Box>
+    return <Box style={{ height: '100%' }}>
         {/* <SearchField/> */}
         <UserList />
     </Box>

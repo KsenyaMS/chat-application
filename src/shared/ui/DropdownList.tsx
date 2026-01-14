@@ -27,6 +27,8 @@ export const DropdownList = ({
             shadow="md"
             position="bottom-start"
             width={220}
+            closeOnClickOutside={true}
+            closeOnItemClick={true}
         >
             <Menu.Target>
                 {targetButton}
