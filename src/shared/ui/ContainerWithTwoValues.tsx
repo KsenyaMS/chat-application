@@ -16,7 +16,7 @@ export const ContainerWithTwoValues = ({
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
 
-    return <Box>
+    return <Box style={{ textAlign: 'left' }}>
         <Tooltip
             label={primaryValueTooltip}
             disabled={!primaryValueTooltip}

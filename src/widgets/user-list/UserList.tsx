@@ -8,10 +8,15 @@ const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' }
 }
 
-export const UserList = () => {
+type UserListProps = {
+    searchText?: string,
+}
+
+export const UserList = ({ searchText }: UserListProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
     const [userList, setUserList] = useState<SimpleListItemType[]>([]);
+    const [filteredUserList, setFilteredUserList] = useState<SimpleListItemType[]>([]);
     console.log({ userList });
 
 
@@ -41,9 +46,6 @@ export const UserList = () => {
             .catch(err => {
                 console.log({ err });
                 setIsError(true);
-            })
-            .finally(() => {
-                setIsLoading(false);
             });
     }
 
@@ -52,19 +54,30 @@ export const UserList = () => {
         getAllUserList();
     }, [])
 
+    useEffect(() => {
+        setIsLoading(true);
+        const result = userList
+            ?.filter(item => !searchText || item.primaryText.toLowerCase().includes(searchText.toLowerCase()));
+        setFilteredUserList(result);
+        setIsLoading(false);
+    }, [searchText, userList])
+
     return (
         <Box style={css.listWrap}>
             {!userList?.length && !isLoading && !isError &&
                 <Text>Нет данных для отображения</Text>
             }
-            {!userList?.length && isLoading && !isError &&
+            {!filteredUserList?.length && searchText && !isLoading && !isError &&
+                <Text>Нет пользователей, удовлетворяющих указанным критериям</Text>
+            }
+            {userList?.length && !filteredUserList?.length && isLoading && !isError &&
                 <>
                     <Text>Идет загрузка</Text>
                 </>
             }
-            {!isLoading && !!userList?.length &&
+            {!isLoading && !!filteredUserList?.length &&
                 <SimpleList
-                    list={userList}
+                    list={filteredUserList}
                 />
             }
             {!userList?.length && !isLoading && isError &&
