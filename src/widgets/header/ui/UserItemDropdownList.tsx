@@ -1,5 +1,4 @@
 import { Box, useMantineColorScheme, useMantineTheme } from "@mantine/core"
-import { useState } from "react";
 import {
     IconMessage,
     IconMenu4
@@ -11,7 +10,6 @@ export const UserItemDropdownList = () => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
     const navigate = useNavigate();
-    const [isDropdownListOpen, setIsDropdownListOpen] = useState<boolean>(false);
 
     const handleDialogButtonClick = () => {
         navigate(routeData.dialogPage.path)
@@ -19,14 +17,12 @@ export const UserItemDropdownList = () => {
 
     return (
         <DropdownList
-            isDropdownListOpen={isDropdownListOpen}
             targetButton={
                 <Box>
                     <IconButton
                         variant={'subtle'}
                         icon={<IconMenu4 size={'large'} color={mantineTheme.colors.textColor[colorScheme]} />}
                         ariaLabel={'Log out'}
-                        onClick={() => setIsDropdownListOpen(prev => !prev)}
                     />
                 </Box>
             }

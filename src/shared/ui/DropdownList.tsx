@@ -11,19 +11,16 @@ export type DropdownItem = {
 export type DropdownListProps = {
     targetButton: ReactElement,
     list: DropdownItem[],
-    isDropdownListOpen: boolean,
 }
 
 export const DropdownList = ({
     targetButton,
     list,
-    isDropdownListOpen,
 }: DropdownListProps
 ) => {
 
     return (
         <Menu
-            opened={isDropdownListOpen}
             shadow="md"
             position="bottom-start"
             width={220}

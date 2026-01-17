@@ -5,7 +5,7 @@ type IconButtonProps = {
     variant: string,
     ariaLabel?: string,
     icon: ReactElement,
-    onClick: () => void,
+    onClick?: () => void,
 }
 
 export const IconButton = ({

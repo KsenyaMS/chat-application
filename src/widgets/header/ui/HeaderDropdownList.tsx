@@ -1,5 +1,4 @@
-import { Box, Menu, useMantineTheme } from "@mantine/core"
-import { useState } from "react";
+import { Box, useMantineTheme } from "@mantine/core"
 import { MenuButton } from "../../../features";
 import {
     IconUsersGroup,
@@ -13,7 +12,6 @@ import { DropdownList, routeData } from "../../../shared";
 export const HeaderDropdownList = () => {
     const navigate = useNavigate();
     const mantineTheme = useMantineTheme();
-    const [isDropdownListOpen, setIsDropdownListOpen] = useState<boolean>(false);
 
     const handleUserListButtonClick = () => {
         navigate(routeData.userListPage.path)
@@ -33,10 +31,9 @@ export const HeaderDropdownList = () => {
 
     return (
         <DropdownList
-            isDropdownListOpen={isDropdownListOpen}
             targetButton={
                 <Box>
-                    <MenuButton handleClick={() => setIsDropdownListOpen(prev => !prev)} />
+                    <MenuButton />
                 </Box>
             }
             list={[
