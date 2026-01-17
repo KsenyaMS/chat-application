@@ -32,9 +32,7 @@ export const RegistrationButton = ({ handleSubmit, setErrorObj }: RegistrationBu
             const res = await RegistrationSchema.parseAsync(data);
             // const passwordHash = md5(data.password);
             const token = await createUser(res);
-            await getSession(token);
             setToken(token);
-            navigate(routeData.forgotPasswordPage.path);
         }
         catch (err) {
             if (err instanceof z.ZodError) {

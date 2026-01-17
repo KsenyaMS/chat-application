@@ -12,7 +12,7 @@ export const AuthorizationPage = () => {
 
     useEffect(() => {
         if (userType === UserType.User)
-            navigate(routeData.forgotPasswordPage.path);
+            navigate(routeData.profilePage.path);
     }, [userType]);
 
     return (

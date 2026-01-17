@@ -15,11 +15,12 @@ export type UserInfo = {
     lastName: string,
     secondName?: string,
     password: string,
-    lastActivityDate: number,
     avatar?: Blob
 }
 
 export type SessionParams = {
     id: string,
-    userInfo: Omit<UserInfo, 'password'>,
+    userInfo: Omit<UserInfo, 'password'> & {
+        lastActivityDate: number,
+    },
 }

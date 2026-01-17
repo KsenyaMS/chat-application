@@ -47,6 +47,9 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
 
     const refreshSession = useCallback(async () => {
         try {
+            if (!sessionParams?.id)
+                throw new Error();
+
             const session = await getSession(sessionParams?.id);
             setSessionParams(session);
             setUserType(UserType.User);

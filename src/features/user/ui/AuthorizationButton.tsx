@@ -29,13 +29,12 @@ export const AuthorizationButton = ({ handleSubmit, setErrorObj, returnUrl }: Au
             const res = await AuthorizationSchema.parseAsync(data);
             // const passwordHash = md5(data.password);
             const token = await signIn({ email: res.email, password: res.password });
-            await getSession(token);
+
             setToken(token);
             if (returnUrl) {
                 window.location.href = returnUrl;
                 return;
             }
-            navigate(`${routeData.profilePage.path}`);
         }
         catch (err) {
             if (err instanceof z.ZodError) {
