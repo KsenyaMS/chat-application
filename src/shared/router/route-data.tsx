@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { AuthorizationPage, UserListPage } from "../../pages"
+import { AuthorizationPage, MessageListPage, UserListPage } from "../../pages"
 
 export type RouteObject = {
     label?: string,
@@ -59,7 +59,7 @@ export const routeData: { [key: string]: RouteObject } = {
         label: 'Сообщения',
         path: '/message-list',
         code: RouteCode.MessageList,
-        element: <></>
+        element: <MessageListPage />
     },
     dialogPage: {
         label: 'Диалог',

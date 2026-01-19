@@ -37,7 +37,7 @@ export const UserList = ({ searchText }: UserListProps) => {
                         avatar: link,
                         avatarHelperText: getUserInitials(userInfo),
                         primaryText: getUserFIO(userInfo),
-                        secondaryText: format(getDateWithTimezone(userInfo.lastActivityDate ?? new Date()), 'dd.MM HH:ss') ?? '',
+                        secondaryText: format(getDateWithTimezone(userInfo?.lastActivityDate ?? new Date()), 'dd.MM HH:ss') ?? '',
                         rightContent: <UserItemDropdownList />
                     }
                 })
