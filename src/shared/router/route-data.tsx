@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { AuthorizationPage, MessageListPage, UserListPage } from "../../pages"
+import { AuthorizationPage, DialogListPage, UserListPage } from "../../pages"
 
 export type RouteObject = {
     label?: string,
@@ -14,7 +14,7 @@ export enum RouteCode {
     ForgotPassword = 'forgot-password',
     Profile = 'profile',
     UserList = 'user-list',
-    MessageList = 'message-list',
+    DialogList = 'dialog-list',
     Dialog = 'dialog',
 }
 
@@ -55,16 +55,16 @@ export const routeData: { [key: string]: RouteObject } = {
         code: RouteCode.UserList,
         element: <UserListPage />
     },
-    messageListPage: {
-        label: 'Сообщения',
-        path: '/message-list',
-        code: RouteCode.MessageList,
-        element: <MessageListPage />
+    dialogListPage: {
+        label: 'Список сообщений',
+        path: '/dialog-list',
+        code: RouteCode.DialogList,
+        element: <DialogListPage />
     },
     dialogPage: {
         label: 'Диалог',
         path: '/dialog/:dialogId',
-        code: RouteCode.MessageList,
+        code: RouteCode.DialogList,
         element: <></>
     },
 }

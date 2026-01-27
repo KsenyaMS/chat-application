@@ -2,9 +2,9 @@ import { useState } from "react"
 import { SimpleTextField } from "../../shared";
 import { Box } from "@mantine/core";
 import { IconSearch } from '@tabler/icons-react';
-import { MessageList } from "../../widgets";
+import { DialogList } from "../../widgets";
 
-export const MessageListPage = () => {
+export const DialogListPage = () => {
     const [search, setSearch] = useState<string>('');
 
     return <Box style={{ height: '100%' }}>
@@ -13,6 +13,6 @@ export const MessageListPage = () => {
             text="Поиск"
             onChange={(value) => setSearch(value)}
         />
-        <MessageList searchText={search} />
+        <DialogList searchText={search} />
     </Box>
 }

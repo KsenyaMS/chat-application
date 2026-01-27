@@ -15,11 +15,13 @@
       "lastName": "D"
     },
     {
-      "id": "98e2",
       "email": "444@mail.ru",
-      "password": "321123123",
       "firstName": "Новое имя",
-      "lastName": "Новое"
+      "lastName": "Новое",
+      "firstPassword": "12345678",
+      "secondPassword": "12345678",
+      "password": "Новое имя",
+      "id": "98e2"
     },
     {
       "id": "8b51",
@@ -45,13 +47,25 @@
   ],
   "session": [
     {
-      "id": "25278b12800f6de48345762a328e6127",
+      "id": "4a174fff6ed66e949ca191cedc605356",
       "userInfo": {
-        "id": "d6a1",
-        "firstName": "Ksenia",
-        "lastName": "K",
-        "email": "12345@mail.ru"
+        "id": "98e2",
+        "firstName": "Новое имя",
+        "lastName": "Новое",
+        "email": "444@mail.ru",
+        "lastActivityDate": 1769379771
       }
+    }
+  ],
+  "dialogs": [
+    {
+      "id": "1",
+      "userIds": [
+        "98e2",
+        "8f66"
+      ],
+      "lastMessageTime": 1769356317,
+      "lastVisitedTime": 1769349117
     }
   ]
 }

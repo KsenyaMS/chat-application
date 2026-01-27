@@ -22,7 +22,7 @@ export const UserItemDropdownList = () => {
                     <IconButton
                         variant={'subtle'}
                         icon={<IconMenu4 size={'large'} color={mantineTheme.colors.textColor[colorScheme]} />}
-                        ariaLabel={'Log out'}
+                        ariaLabel={'Написать сообщение'}
                     />
                 </Box>
             }

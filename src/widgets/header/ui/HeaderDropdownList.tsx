@@ -17,8 +17,8 @@ export const HeaderDropdownList = () => {
         navigate(routeData.userListPage.path)
     }
 
-    const handleMessageListButtonClick = () => {
-        navigate(routeData.messageListPage.path)
+    const handleDialogListButtonClick = () => {
+        navigate(routeData.dialogListPage.path)
     }
 
     const handleProfileButtonClick = () => {
@@ -49,7 +49,7 @@ export const HeaderDropdownList = () => {
                 },
                 {
                     text: 'Сообщения',
-                    handleClick: handleMessageListButtonClick,
+                    handleClick: handleDialogListButtonClick,
                     leftIcon: <IconMessage size={14} />
                 },
                 {
