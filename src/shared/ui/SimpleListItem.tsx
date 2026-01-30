@@ -1,10 +1,7 @@
 import { Box, useMantineColorScheme, useMantineTheme } from "@mantine/core"
 import { CssComponent } from "../model"
-import { DropdownItem } from "./DropdownList"
 import { ReactElement } from "react"
-import { SimpleAvatar } from "./SimpleAvatar"
 import { ContainerWithTwoValues } from "./ContainerWithTwoValues"
-import { UserItemDropdownList } from "../../widgets"
 
 const css: CssComponent = {
     wrap: {
@@ -27,20 +24,18 @@ const css: CssComponent = {
     }
 }
 
-export type SimpleListItemType = {
-    avatar: string,
-    primaryText: string,
-    secondaryText?: string,
-    avatarHelperText?: string,
-    rightContent?: ReactElement,
-}
-
 type SimpleListItemProps = {
-    listItem: SimpleListItemType
+    avatar: ReactElement,
+    rightContent?: ReactElement,
+    primaryValue: string,
+    secondaryValue?: string,
 }
 
 export const SimpleListItem = ({
-    listItem
+    avatar,
+    rightContent,
+    primaryValue,
+    secondaryValue,
 }: SimpleListItemProps) => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
@@ -51,18 +46,14 @@ export const SimpleListItem = ({
     return (
         <Box style={{ ...css.wrap, background: mantineTheme.colors.gray[itemBackgroundIndex] }}>
             <Box style={css.leftBlock}>
-                <SimpleAvatar
-                    link={listItem.avatar}
-                    userName={listItem.avatarHelperText}
-                    color={mantineTheme.colors.textColor[colorScheme]}
-                />
+                {avatar && avatar}
                 <ContainerWithTwoValues
-                    primaryValue={listItem.primaryText}
-                    secondaryValue={listItem.secondaryText ?? ''}
+                    primaryValue={primaryValue}
+                    secondaryValue={secondaryValue ?? ''}
                 />
             </Box>
             <Box>
-                {listItem?.rightContent && listItem.rightContent}
+                {rightContent && rightContent}
             </Box>
         </Box>
     )

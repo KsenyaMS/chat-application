@@ -2,7 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthorizationForm, ForgotPasswordForm, RegistrationForm } from "../../../widgets"
 import { getRouteCode, RouteCode, routeData } from "../../../shared";
 import { useEffect } from "react";
-import { UserType, useSessionProvider } from "../../../features";
+import { useSessionProvider } from "../../../features";
+import { UserType } from "../../../api";
 
 export const AuthorizationPage = () => {
     const navigate = useNavigate();

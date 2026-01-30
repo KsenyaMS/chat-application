@@ -4,10 +4,8 @@ import {
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
 import md5 from 'md5';
-import { getSession, signIn } from '../model';
-import { useNavigate } from 'react-router-dom';
-import { routeData } from '../../../shared';
 import { AuthorizationSchema, useSessionProvider } from '../config';
+import { signIn } from '../../../api/user/user-service';
 
 export type AuthorizationFormProps = {
     handleSubmit: UseFormHandleSubmit<{
@@ -22,7 +20,6 @@ export type AuthorizationFormProps = {
 }
 
 export const AuthorizationButton = ({ handleSubmit, setErrorObj, returnUrl }: AuthorizationFormProps) => {
-    const navigate = useNavigate();
     const { setToken } = useSessionProvider();
     const onSubmit: SubmitHandler<AuthorizationSchema> = async (data) => {
         try {

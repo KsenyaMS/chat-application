@@ -1,4 +1,4 @@
-import { UserInfo } from "../../features";
+import { UserInfo } from "../../api";
 
 export const getUserInitials = (user: UserInfo) => {
     const parts = [];

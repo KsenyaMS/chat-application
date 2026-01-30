@@ -1,12 +1,11 @@
 import { Box } from "@mantine/core";
-import { SimpleListItem, SimpleListItemType } from "./SimpleListItem";
 import { CssComponent } from "../model";
+import { ReactNode } from "react";
 
 const css: CssComponent = {
     listWrap: {
         width: '100%',
         height: '100%',
-        // background: 'yellow',
         paddingBottom: '5px',
         marginTop: '10px',
         boxSizing: 'border-box',
@@ -16,18 +15,13 @@ const css: CssComponent = {
 }
 
 export type SimpleListProps = {
-    list: SimpleListItemType[],
+    children: ReactNode,
 }
 
 export const SimpleList = ({
-    list
+    children
 }: SimpleListProps) => {
     return <Box style={css.listWrap}>
-        {list.map((item, idx) =>
-            <SimpleListItem
-                key={idx}
-                listItem={item}
-            />
-        )}
+        {children}
     </Box>
 }

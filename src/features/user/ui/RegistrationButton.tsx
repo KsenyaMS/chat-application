@@ -1,12 +1,10 @@
 import {
     Button,
 } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import { createUser, getSession } from '../model';
 import { SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import z from 'zod';
-import { routeData } from '../../../shared';
 import { RegistrationSchema, useSessionProvider } from '../config';
+import { createUser } from '../../../api/user/user-service';
 
 type RegistrationButtonProps = {
     handleSubmit: UseFormHandleSubmit<{
@@ -24,7 +22,6 @@ type RegistrationButtonProps = {
 }
 
 export const RegistrationButton = ({ handleSubmit, setErrorObj }: RegistrationButtonProps) => {
-    const navigate = useNavigate();
     const { setToken } = useSessionProvider();
 
     const onSubmit: SubmitHandler<RegistrationSchema> = async (data) => {

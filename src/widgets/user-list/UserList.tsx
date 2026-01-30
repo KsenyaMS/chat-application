@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getUserList } from './../../features';
-import { CssComponent, format, getDateWithTimezone, getUserFIO, getUserInitials, SimpleList, SimpleListItemType } from "../../shared";
+import { UserModel, userModel, useSessionProvider } from './../../features';
+import { CssComponent, format, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
+import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
 import { UserItemDropdownList } from "../header";
-import { Box, Text } from "@mantine/core";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' }
@@ -15,38 +15,25 @@ type UserListProps = {
 export const UserList = ({ searchText }: UserListProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
-    const [userList, setUserList] = useState<SimpleListItemType[]>([]);
-    const [filteredUserList, setFilteredUserList] = useState<SimpleListItemType[]>([]);
-    console.log({ userList });
+    const [userList, setUserList] = useState<UserModel[]>([]);
+    const [filteredUserList, setFilteredUserList] = useState<UserModel[]>([]);
 
+    const mantineTheme = useMantineTheme();
+    const { colorScheme } = useMantineColorScheme();
+    const { sessionParams } = useSessionProvider();
 
     const getAllUserList = async () => {
-        return getUserList()
-            .then(res => {
-                const data: SimpleListItemType[] = res?.map(userInfo => {
-                    const imageBlob = userInfo?.avatar;
-                    let link = '';
-                    if (imageBlob) {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(imageBlob);
-                        reader.onloadend = () => {
-                            link = reader.result;
-                        };
-                    }
-                    return {
-                        avatar: link,
-                        avatarHelperText: getUserInitials(userInfo),
-                        primaryText: getUserFIO(userInfo),
-                        secondaryText: format(getDateWithTimezone(userInfo?.lastActivityDate ?? new Date()), 'dd.MM HH:ss') ?? '',
-                        rightContent: <UserItemDropdownList />
-                    }
-                })
-                setUserList(data);
-            })
-            .catch(err => {
-                console.log({ err });
-                setIsError(true);
-            });
+        if (!sessionParams?.userInfo.id)
+            return;
+
+        try {
+            const list = await userModel.fetchUserList(sessionParams?.userInfo.id);
+            setUserList(list);
+        }
+        catch (err) {
+            setIsError(true);
+            setIsLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -57,7 +44,7 @@ export const UserList = ({ searchText }: UserListProps) => {
     useEffect(() => {
         setIsLoading(true);
         const result = userList
-            ?.filter(item => !searchText || item.primaryText.toLowerCase().includes(searchText.toLowerCase()));
+            ?.filter(item => !searchText || item.FIO.toLowerCase().includes(searchText.toLowerCase()));
         setFilteredUserList(result);
         setIsLoading(false);
     }, [searchText, userList])
@@ -76,9 +63,23 @@ export const UserList = ({ searchText }: UserListProps) => {
                 </>
             }
             {!isLoading && !!filteredUserList?.length &&
-                <SimpleList
-                    list={filteredUserList}
-                />
+                <SimpleList>
+                    {filteredUserList.map((item, idx) =>
+                        <SimpleListItem
+                            key={idx}
+                            primaryValue={item.FIO}
+                            secondaryValue={format(new Date(), 'dd.MM.yyyy HH:mm')}
+                            avatar={
+                                <SimpleAvatar
+                                    link={item.avatar}
+                                    userName={item.initials}
+                                    color={mantineTheme.colors.textColor[colorScheme]}
+                                />
+                            }
+                            rightContent={<UserItemDropdownList />}
+                        />
+                    )}
+                </SimpleList>
             }
             {!userList?.length && !isLoading && isError &&
                 <Text>Произошла ошибка при загрузке данных. Попробуйте перезагрузить страницу или войдите позже</Text>

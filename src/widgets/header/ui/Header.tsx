@@ -1,7 +1,8 @@
 import { CssComponent } from "../../../shared";
-import { LogOutButton, ThemeButton, UserType, useSessionProvider } from "../../../features";
+import { LogOutButton, ThemeButton, useSessionProvider } from "../../../features";
 import { Box } from "@mantine/core";
 import { HeaderDropdownList } from "./HeaderDropdownList";
+import { UserType } from "../../../api";
 
 const css: CssComponent = {
     header: {

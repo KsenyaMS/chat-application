@@ -1,8 +1,9 @@
-import { getSession, SessionParams, signOut, UserType } from '../..';
 import { createContext, JSX, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { routeData } from '../../../shared';
+import { SessionParams, UserType } from '../../../api';
+import { getSession, signOut } from '../../../api/user/user-service';
 
 // Задержка для проверки бездействия пользователя 1 минута
 const INTERVAL_DELAY_MS = 60000;

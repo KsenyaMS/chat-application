@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { CssComponent, format, getDateWithTimezone, getUserFIO, getUserInitials, SimpleList, SimpleListItemType } from "../../shared";
-import { Box, Text, useMantineTheme } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import { getDialogList } from "../../features/message/model";
-import { getUserList, UserInfo, useSessionProvider } from "../../features";
+import { useSessionProvider } from "../../features";
 import { IconMessage2Exclamation } from '@tabler/icons-react';
 import { DialogItemDropdownList } from "./DialogItemDropdownList";
+import { getUserList } from "../../api/user/user-service";
+import { UserInfo } from "../../api";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' },
@@ -22,7 +24,6 @@ type DialogListProps = {
 }
 
 export const DialogList = ({ searchText }: DialogListProps) => {
-    const mantineTheme = useMantineTheme();
     const { sessionParams } = useSessionProvider();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
