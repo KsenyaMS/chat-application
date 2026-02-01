@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CssComponent, format, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
+import { CssComponent, format, getDateWithTimezone, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
 import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
 import { DialogModel, messageModel } from "../../features/message/model";
 import { useSessionProvider } from "../../features";
@@ -77,7 +77,7 @@ export const DialogList = ({ searchText }: DialogListProps) => {
                         <SimpleListItem
                             key={idx}
                             primaryValue={item.interlocutor.FIO}
-                            secondaryValue={format(item.lastMessageTime, 'dd.MM.yyyy HH:mm')}
+                            secondaryValue={format(getDateWithTimezone(item.lastMessageTime), 'dd.MM.yyyy HH:mm')}
                             avatar={
                                 <SimpleAvatar
                                     link={item.interlocutor.avatar}
