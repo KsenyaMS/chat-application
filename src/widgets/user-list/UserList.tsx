@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { UserModel, userModel, useSessionProvider } from './../../features';
+import { UserItemDropdownList, UserModel, userModel, useSessionProvider } from './../../features';
 import { CssComponent, format, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
 import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
-import { UserItemDropdownList } from "../header";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' }

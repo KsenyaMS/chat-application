@@ -1,7 +1,9 @@
+import { UserModel } from "../../user"
 
-export type Dialog = {
-    id: string,
-    userIds: string[],
+export type DialogModel = {
     lastMessageTime: number,
     lastVisitedTime: number,
+    interlocutor: UserModel,
+    mainUser: UserModel,
+    id: string,
 }

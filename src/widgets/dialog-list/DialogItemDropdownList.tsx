@@ -3,8 +3,8 @@ import {
     IconClearAll,
     IconMenu4
 } from '@tabler/icons-react';
-import { removeDialog } from "../../features";
 import { DropdownList, IconButton } from "../../shared";
+import { messageService } from "../../api";
 
 export const DialogItemDropdownList = ({ dialogId }: { dialogId: string }) => {
     const mantineTheme = useMantineTheme();
@@ -12,7 +12,7 @@ export const DialogItemDropdownList = ({ dialogId }: { dialogId: string }) => {
 
     const handleDeleteDialog = async (id: string) => {
         try {
-            await removeDialog(id);
+            await messageService.removeDialog(id);
         }
         catch {
             console.log('При попытке удалить диалог возникла ошибка!');

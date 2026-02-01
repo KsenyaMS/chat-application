@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { CssComponent, format, getDateWithTimezone, getUserFIO, getUserInitials, SimpleList, SimpleListItemType } from "../../shared";
-import { Box, Text } from "@mantine/core";
-import { getDialogList } from "../../features/message/model";
+import { CssComponent, format, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
+import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import { DialogModel, messageModel } from "../../features/message/model";
 import { useSessionProvider } from "../../features";
 import { IconMessage2Exclamation } from '@tabler/icons-react';
 import { DialogItemDropdownList } from "./DialogItemDropdownList";
-import { getUserList } from "../../api/user/user-service";
-import { UserInfo } from "../../api";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' },
@@ -25,48 +23,17 @@ type DialogListProps = {
 
 export const DialogList = ({ searchText }: DialogListProps) => {
     const { sessionParams } = useSessionProvider();
+    const mantineTheme = useMantineTheme();
+    const { colorScheme } = useMantineColorScheme();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
-    const [dialogList, setDialogList] = useState<SimpleListItemType[]>([]);
-    const [filteredDialogList, setFilteredDialogList] = useState<SimpleListItemType[]>([]);
+    const [dialogList, setDialogList] = useState<DialogModel[]>([]);
+    const [filteredDialogList, setFilteredDialogList] = useState<DialogModel[]>([]);
 
     const getAllDialogList = async (userId: string) => {
         try {
-            const dialogs = await getDialogList(userId);
-            const userList = await getUserList();
-
-            const userObj: { [key: string]: UserInfo } = {};
-            userList.forEach(user => {
-                userObj[user.id] = user;
-            })
-            const result: SimpleListItemType[] = dialogs.map(item => {
-                const otherUserId: string = item.userIds.find(id => id !== userId);
-                const user = userObj[otherUserId];
-                const imageBlob = user?.avatar;
-                let link = '';
-                if (imageBlob) {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(imageBlob);
-                    reader.onloadend = () => {
-                        link = reader.result;
-                    };
-                }
-                return {
-                    avatar: link,
-                    avatarHelperText: getUserInitials(user),
-                    primaryText: getUserFIO(user),
-                    secondaryText: format(getDateWithTimezone(item.lastMessageTime ?? new Date()), 'dd.MM.yyyy HH:ss') ?? '',
-                    rightContent: <Box
-                        style={css.rightContentStyle}
-                    >
-                        {item.lastMessageTime > item.lastVisitedTime &&
-                            <IconMessage2Exclamation color={'white'} />
-                        }
-                        <DialogItemDropdownList dialogId={item.id} />
-                    </Box>,
-                }
-            })
-            setDialogList(result);
+            const dialogList = await messageModel.fetchDialogListByUserId(userId);
+            setDialogList(dialogList ?? []);
             setIsLoading(false);
         }
         catch {
@@ -86,7 +53,7 @@ export const DialogList = ({ searchText }: DialogListProps) => {
     useEffect(() => {
         setIsLoading(true);
         const result = dialogList
-            ?.filter(item => !searchText || item.primaryText.toLowerCase().includes(searchText.toLowerCase()));
+            ?.filter(item => !searchText || item.interlocutor.FIO.toLowerCase().includes(searchText.toLowerCase()));
         setFilteredDialogList(result);
         setIsLoading(false);
     }, [searchText, dialogList])
@@ -105,9 +72,32 @@ export const DialogList = ({ searchText }: DialogListProps) => {
                 </>
             }
             {!isLoading && !!filteredDialogList?.length &&
-                <SimpleList
-                    list={filteredDialogList}
-                />
+                <SimpleList>
+                    {filteredDialogList.map((item, idx) =>
+                        <SimpleListItem
+                            key={idx}
+                            primaryValue={item.interlocutor.FIO}
+                            secondaryValue={format(item.lastMessageTime, 'dd.MM.yyyy HH:mm')}
+                            avatar={
+                                <SimpleAvatar
+                                    link={item.interlocutor.avatar}
+                                    userName={item.interlocutor.initials}
+                                    color={mantineTheme.colors.textColor[colorScheme]}
+                                />
+                            }
+                            rightContent={
+                                <Box
+                                    style={css.rightContentStyle}
+                                >
+                                    {item.lastMessageTime > item.lastVisitedTime &&
+                                        <IconMessage2Exclamation color={'white'} />
+                                    }
+                                    <DialogItemDropdownList dialogId={item.id} />
+                                </Box>
+                            }
+                        />
+                    )}
+                </SimpleList>
             }
             {!dialogList?.length && !isLoading && isError &&
                 <Text>Произошла ошибка при загрузке данных. Попробуйте перезагрузить страницу или войдите позже</Text>

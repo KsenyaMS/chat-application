@@ -8,3 +8,7 @@ export type UserModel = {
     initials: string,
     avatar?: string,
 }
+
+export type UserObj = {
+    [key: string]: UserModel,
+}

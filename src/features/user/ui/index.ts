@@ -6,3 +6,4 @@ export * from './EmailInputWithValidation';
 export * from './LogOutButton';
 export * from './TextInputWithValidation';
 export * from './UpdatePasswordButton';
+export * from './UserItemDropdownList';
