@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { AuthorizationPage, DialogListPage, UserListPage } from "../../pages"
+import { AuthorizationPage, DialogListPage, ProfilePage, UserListPage } from "../../pages"
 
 export type RouteObject = {
     label?: string,
@@ -47,7 +47,7 @@ export const routeData: { [key: string]: RouteObject } = {
         label: 'Профиль',
         path: '/profile',
         code: RouteCode.Profile,
-        element: <></>
+        element: <ProfilePage/>
     },
     userListPage: {
         label: 'Список пользователей',

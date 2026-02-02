@@ -74,6 +74,20 @@ export const fetchUserDict = async () => {
     }
     catch (err) {
         console.log({ err });
+    }
+}
 
+export const fetchUserInfoById = async (userId: string) => {
+    try {
+        const dict = await fetchUserDict();
+
+        if (!dict) {
+            return undefined;
+        }
+        
+        return dict?.[userId];
+    }
+    catch (err) {
+        console.log({ err });
     }
 }
