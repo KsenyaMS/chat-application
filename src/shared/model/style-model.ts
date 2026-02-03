@@ -1,3 +1,5 @@
+import { CSSProperties } from "@mantine/core"
+
 export type CssComponent = {
-    [key: string]: any,
+    [key: string]: CSSProperties
 }
