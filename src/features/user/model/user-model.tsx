@@ -4,22 +4,24 @@ import { UserModel, UserObj } from "./user-model.types";
 
 const transformForWeb = (userList: UserInfo[]): UserModel[] => {
     return userList.map(user => {
-        const imageBlob = user?.avatar;
-        let link = '';
-        if (imageBlob) {
-            const reader = new FileReader();
-            reader.readAsDataURL(imageBlob);
-            reader.onloadend = () => {
-                link = reader.result;
-            };
-        }
         return {
             ...user,
             FIO: getUserFIO(user),
             initials: getUserInitials(user),
-            avatar: link,
         }
     })
+}
+
+const transformForApi = (user: UserModel): UserInfo => {
+    return {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        secondName: user.secondName,
+        lastName: user.lastName,
+        password: user.password,
+        avatar: user.avatar,
+    }
 }
 
 export const fetchAllUserList = async () => {
@@ -90,4 +92,18 @@ export const fetchUserInfoById = async (userId: string) => {
     catch (err) {
         console.log({ err });
     }
+}
+
+const updateUserList = async () => {
+    const allList = await userService.getUserList();
+    const list = transformForWeb(allList);
+    localStorage.setItem('userList', JSON.stringify(list));
+
+}
+
+export const updateUser = async (user: UserModel) => {
+    const transformedUser = transformForApi(user);
+
+    await userService.updateUser(transformedUser);
+    await updateUserList();
 }

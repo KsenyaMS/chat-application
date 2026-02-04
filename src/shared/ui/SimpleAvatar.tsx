@@ -4,12 +4,14 @@ type SimpleAvatarProps = {
     link?: string,
     userName?: string,
     color?: string,
+    size?: string | number,
 }
 
 export const SimpleAvatar = ({
     link,
     userName,
-    color
+    color,
+    size
 }: SimpleAvatarProps) => {
     return <>
         {link &&
@@ -17,6 +19,7 @@ export const SimpleAvatar = ({
                 src={link}
                 alt="it's me"
                 color={color}
+                size={size && size}
             />
         }
 
@@ -24,11 +27,18 @@ export const SimpleAvatar = ({
             <Avatar
                 color={color}
                 radius="xl"
+                size={size && size}
             >
                 {userName}
             </Avatar>
         }
 
-        {!link && !userName && <Avatar radius="xl" color={color} />}
+        {!link && !userName &&
+            <Avatar
+                radius="xl"
+                color={color}
+                size={size && size}
+            />
+        }
     </>
 }

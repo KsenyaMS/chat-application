@@ -15,7 +15,7 @@ export type UserInfo = {
     lastName: string,
     secondName?: string,
     password: string,
-    avatar?: Blob
+    avatar?: string
 }
 
 export type SessionParams = {

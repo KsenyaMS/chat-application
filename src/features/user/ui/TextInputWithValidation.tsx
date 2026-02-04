@@ -1,5 +1,6 @@
 import { Text, TextInput, useMantineTheme } from "@mantine/core";
 import { UseFormRegister } from "react-hook-form";
+import { CssComponent } from "../../../shared";
 
 const css = {
     errorTextStyle: {
@@ -12,6 +13,7 @@ export type TextInputWithValidationProps = {
     register: UseFormRegister<any>,
     code: string,
     text: string,
+    style?: CssComponent,
 }
 
 export const TextInputWithValidation = ({
@@ -19,6 +21,7 @@ export const TextInputWithValidation = ({
     register,
     code,
     text,
+    style,
 }: TextInputWithValidationProps) => {
     const mantineTheme = useMantineTheme();
 
@@ -29,6 +32,7 @@ export const TextInputWithValidation = ({
             required
             radius="md"
             {...register(code)}
+            style={style}
         />
         {errorObj?.[code] &&
             <Text style={{ ...css.errorTextStyle, color: mantineTheme.colors.red[8] }}>

@@ -43,12 +43,12 @@ export const DialogList = ({ searchText }: DialogListProps) => {
     }
 
     useEffect(() => {
-        if (!sessionParams?.userInfo.id)
+        if (!sessionParams?.userInfo?.id)
             return;
 
         setIsLoading(true);
-        getAllDialogList(sessionParams?.userInfo.id);
-    }, [])
+        getAllDialogList(sessionParams.userInfo.id);
+    }, [sessionParams?.userInfo?.id])
 
     useEffect(() => {
         setIsLoading(true);
@@ -64,9 +64,9 @@ export const DialogList = ({ searchText }: DialogListProps) => {
                 <Text>Нет данных для отображения</Text>
             }
             {!filteredDialogList?.length && !!searchText && !isLoading && !isError &&
-                <Text>Нет пользователей, удовлетворяющих указанным критериям</Text>
+                <Text>Нет диалогов, удовлетворяющих указанным критериям</Text>
             }
-            {!!dialogList?.length && !filteredDialogList?.length && isLoading && !isError &&
+            {(!dialogList?.length || !filteredDialogList?.length) && isLoading && !isError &&
                 <>
                     <Text>Идет загрузка</Text>
                 </>

@@ -7,6 +7,7 @@ export type UserModel = {
     FIO: string,
     initials: string,
     avatar?: string,
+    password: string,
 }
 
 export type UserObj = {

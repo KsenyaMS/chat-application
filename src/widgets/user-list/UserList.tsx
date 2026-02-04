@@ -22,11 +22,11 @@ export const UserList = ({ searchText }: UserListProps) => {
     const { sessionParams } = useSessionProvider();
 
     const getAllUserList = async () => {
-        if (!sessionParams?.userInfo.id)
+        if (!sessionParams?.userInfo?.id)
             return;
 
         try {
-            const list = await userModel.fetchUserList(sessionParams?.userInfo.id);
+            const list = await userModel.fetchUserList(sessionParams.userInfo.id);
             setUserList(list);
         }
         catch (err) {
@@ -56,7 +56,7 @@ export const UserList = ({ searchText }: UserListProps) => {
             {!filteredUserList?.length && searchText && !isLoading && !isError &&
                 <Text>Нет пользователей, удовлетворяющих указанным критериям</Text>
             }
-            {userList?.length && !filteredUserList?.length && isLoading && !isError &&
+            {(!userList?.length || !filteredUserList?.length) && isLoading && !isError &&
                 <>
                     <Text>Идет загрузка</Text>
                 </>
