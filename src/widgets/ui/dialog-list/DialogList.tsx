@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { CssComponent, format, getDateWithTimezone, SimpleAvatar, SimpleList, SimpleListItem } from "../../shared";
 import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
-import { DialogModel, messageModel } from "../../features/message/model";
-import { useSessionProvider } from "../../features";
 import { IconMessage2Exclamation } from '@tabler/icons-react';
 import { DialogItemDropdownList } from "./DialogItemDropdownList";
+import { CssComponent, format, getDateWithTimezone, SimpleAvatar, SimpleList, SimpleListItem } from "../../../shared";
+import { DialogModel, messageModel, useSessionProvider } from "../../../features";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' },

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useMantineTheme, useMantineColorScheme } from '@mantine/core';
-import { Header } from '../../header';
 import './Layout.css';
 import { CssComponent } from '../../../shared';
+import { Header } from '../header';
 
 const css: CssComponent = {
     wrap: {

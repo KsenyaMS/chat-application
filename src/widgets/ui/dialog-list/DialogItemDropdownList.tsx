@@ -3,8 +3,8 @@ import {
     IconClearAll,
     IconMenu4
 } from '@tabler/icons-react';
-import { DropdownList, IconButton } from "../../shared";
-import { messageService } from "../../api";
+import { messageService } from "../../../api";
+import { DropdownList, IconButton } from "../../../shared";
 
 export const DialogItemDropdownList = ({ dialogId }: { dialogId: string }) => {
     const mantineTheme = useMantineTheme();
