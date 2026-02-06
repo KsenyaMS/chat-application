@@ -4,8 +4,8 @@ import {
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
 import md5 from 'md5';
-import { AuthorizationSchema, useSessionProvider } from '../config';
 import { signIn } from '../../../api/user/user-service';
+import { AuthorizationSchema, useSessionProvider } from '../../config';
 
 export type AuthorizationFormProps = {
     handleSubmit: UseFormHandleSubmit<{

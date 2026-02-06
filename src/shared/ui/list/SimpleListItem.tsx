@@ -1,7 +1,7 @@
 import { Box, useMantineColorScheme, useMantineTheme } from "@mantine/core"
-import { CssComponent } from "../model"
 import { ReactElement } from "react"
-import { ContainerWithTwoValues } from "./ContainerWithTwoValues"
+import { CssComponent } from "../../model"
+import { ContainerWithTwoValues } from "../custom-container"
 
 const css: CssComponent = {
     wrap: {

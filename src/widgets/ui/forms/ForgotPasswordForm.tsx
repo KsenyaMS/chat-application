@@ -2,8 +2,8 @@ import {
     Container,
     Paper,
 } from '@mantine/core';
-import { EmailInputWithValidation, ForgotPasswordSchema, PasswordInputWithValidation, TextInputWithValidation, UpdatePasswordButton } from '../../../features';
-import { routeData, SimpleButton } from '../../../shared';
+import { ForgotPasswordSchema, UpdatePasswordButton } from '../../../features';
+import { EmailInputWithValidation, PasswordInputWithValidation, routeData, SimpleButton, TextInputWithValidation } from '../../../shared';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';

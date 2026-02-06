@@ -4,9 +4,9 @@ import {
     Paper,
 } from '@mantine/core';
 import { useForm } from "react-hook-form";
-import { AuthorizationButton, AuthorizationSchema, EmailInputWithValidation, ForgotPasswordButton, PasswordInputWithValidation } from '../../../features';
+import { AuthorizationButton, AuthorizationSchema, ForgotPasswordButton } from '../../../features';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { routeData, SimpleButton } from '../../../shared';
+import { EmailInputWithValidation, PasswordInputWithValidation, routeData, SimpleButton } from '../../../shared';
 
 export const AuthorizationForm = () => {
     const navigate = useNavigate();

@@ -15,13 +15,12 @@
       "lastName": "D"
     },
     {
+      "id": "98e2",
       "email": "444@mail.ru",
       "firstName": "Новое имя",
       "lastName": "Новое",
-      "firstPassword": "12345678",
-      "secondPassword": "12345678",
       "password": "Новое имя",
-      "id": "98e2"
+      "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADSklEQVR4nO2Za4hNURTHfyPjnTwiksnbjBqPvB95hk9ElC8+KSVJvvigKMREJJnJK0YUhRnxgfJ+l0SSkjBJnmO8BuNtjnb977SbzrnnnnPuvbo6v9p15+y119pr77XXXucMxMTEZIsKoAroSA4zCXDU1pHDXLAcqQU6kIOMkwMfgMv6vYYc5IwmvxoYrd8fgXbkEKOscGqvZ+f0bFUj2SbAZGC9du4B8BZ4DFwFyoG5QJt/4AcnXQ74eD17B7QFmgKLgUfWOUrWvgGlQOdsOTFMhj+7pNxL6tsD3LYm+RDYCEwHCjWuFzAWWAZcBH5L9hOwKBuOnJDBDS59UxqtstmN2QovPwqBY9bYHUA+GWIIUA98SRIC1zQRs8qtQ9iYB9RJx34yRKUMbE4iM10yr4FWIe0MV4gZPctJM8Xaja9AFx9Zc/ALgLwI9mYAf4BfQBFp5IhWaCvZo1Q2j6dL4QCtjkmR3XxkpykhVGvMG+AUMCuE3U66q4wzA0kDh6SszEeuxOeu2JdiBrMpsyqISPRXjv8BdPeJ6cSEdwF9geaK7wNW35KA9qdq3J2IfjRMYqeP3FnJHXXpy7Nqs3sB7TdTiP4MsZsN9FHWMEp6+Mh+1ERnevQvtUqRoLzSWL9s6Um5FOwlOiul62mIsXejHPie2gmzI72JhqmQn6QYom5UaayZU2B2JykTrvtkp9NAS8kWWStarYvScLDRmKse88jXJVwfptQvUJYy2aqfS38yJ15YL1cLrLrJvH8M0vMxVrVrNzeGqu8+IdiuwWbV3EhmOMFMrWLi/jDvKITQVxI2JM3N/V0pryiCIzclU5FCzeV46DPh+VJ9ZhcDsU0DD4cwbPNFMuai9MPx0LdCz28RkK7WwSoOYdimBniv93s/HBd9gxUZ5vkEArJFAytDGI6C00ifuXyf6Zk5r4FzfSLD1Gk1vVomHRkBPNffV1SiBC6Za1L84uHniPmCslY7OzGAIyW6hB19xQz9iShfO+PX/ByZb8nUBMhajs7npjA7EQY/RxZaMrUpVK2O2nlgZJrnmpJhL1qo0LwBzEmDvoyR6ayVNWJHPHDiHYlIHFoeOHFoReS/Cy0nzS3rJP4Hks52JftuxMT8//wFDkB/ozejuBkAAAAASUVORK5CYII="
     },
     {
       "id": "8b51",
@@ -53,7 +52,7 @@
         "firstName": "Новое имя",
         "lastName": "Новое",
         "email": "444@mail.ru",
-        "lastActivityDate": 1769379771
+        "lastActivityDate": 1770399851
       }
     }
   ],

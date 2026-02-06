@@ -5,8 +5,8 @@ import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import z from 'zod';
 import { useNavigate } from 'react-router-dom';
 import { routeData } from '../../../shared';
-import { ForgotPasswordSchema, useSessionProvider } from '../config';
 import { changePassword, getSession } from '../../../api/user/user-service';
+import { ForgotPasswordSchema, useSessionProvider } from '../../config';
 
 export type UpdatePasswordButtonProps = {
     handleSubmit: UseFormHandleSubmit<ForgotPasswordSchema>,

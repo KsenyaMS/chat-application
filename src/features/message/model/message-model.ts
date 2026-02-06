@@ -1,5 +1,5 @@
 import { Dialog, messageService } from "../../../api"
-import { userModel, UserObj } from "../../user";
+import { userModel, UserObj } from "../../model";
 import { DialogModel } from "./message-model.types";
 
 const transformForWeb = (dialogList: Dialog[], userDict: UserObj | undefined, userId: string): DialogModel[] => {

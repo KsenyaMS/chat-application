@@ -86,7 +86,7 @@ export const fetchUserInfoById = async (userId: string) => {
         if (!dict) {
             return undefined;
         }
-        
+
         return dict?.[userId];
     }
     catch (err) {

@@ -3,8 +3,8 @@ import {
 } from '@mantine/core';
 import { SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import z from 'zod';
-import { RegistrationSchema, useSessionProvider } from '../config';
 import { createUser } from '../../../api/user/user-service';
+import { RegistrationSchema, useSessionProvider } from '../../config';
 
 type RegistrationButtonProps = {
     handleSubmit: UseFormHandleSubmit<{

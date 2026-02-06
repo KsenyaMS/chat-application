@@ -1,3 +1,4 @@
-export * from './menu-button';
-export * from './user';
+export * from './ui';
+export * from './config';
 export * from './message';
+export * from './model';

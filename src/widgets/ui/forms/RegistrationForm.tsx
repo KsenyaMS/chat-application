@@ -4,8 +4,8 @@ import {
     Paper,
 } from '@mantine/core';
 import { useForm } from "react-hook-form";
-import { EmailInputWithValidation, PasswordInputWithValidation, RegistrationButton, RegistrationSchema, TextInputWithValidation } from '../../../features';
-import { routeData, SimpleButton } from '../../../shared';
+import { RegistrationButton, RegistrationSchema } from '../../../features';
+import { EmailInputWithValidation, PasswordInputWithValidation, routeData, SimpleButton, TextInputWithValidation } from '../../../shared';
 import { useNavigate } from 'react-router-dom';
 
 export const RegistrationForm = () => {

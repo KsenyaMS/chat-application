@@ -1,9 +1,8 @@
 import { createContext, JSX, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';
-import { routeData } from '../../../shared';
-import { SessionParams, UserType } from '../../../api';
-import { getSession, signOut } from '../../../api/user/user-service';
+import { SessionParams, userService, UserType } from '../../api';
+import { routeData } from '../../shared';
 
 // Задержка для проверки бездействия пользователя 1 минута
 const INTERVAL_DELAY_MS = 60000;
@@ -51,7 +50,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
             if (!sessionParams?.id)
                 throw new Error();
 
-            const session = await getSession(sessionParams?.id);
+            const session = await userService.getSession(sessionParams?.id);
             setSessionParams(session);
             setUserType(UserType.User);
 
@@ -70,7 +69,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
 
     const logOut = useCallback(async () => {
         if (sessionParams?.id) {
-            await signOut(sessionParams.id);
+            await userService.signOut(sessionParams.id);
         }
         setUserType(UserType.Guest);
         localStorage.removeItem('token');
@@ -114,7 +113,7 @@ export const SessionProvider = ({ children }: SessionProviderProps): JSX.Element
         }, INTERVAL_DELAY_MS);
 
         return () => clearInterval(interval);
-    }, [sessionParams, refreshSession, signOut]);
+    }, [sessionParams, refreshSession, userService.signOut]);
 
     useEffect(() => {
         refreshSession();
