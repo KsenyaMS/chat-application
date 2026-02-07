@@ -15,7 +15,7 @@ export const ForgotPasswordButton = () => {
             size="sm"
             onClick={handleClick}
         >
-            Забыли пароль?
+            Сменить пароль
         </Anchor>
     </Group>
 }

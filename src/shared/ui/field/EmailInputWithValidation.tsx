@@ -21,6 +21,12 @@ export const EmailInputWithValidation = ({ errorObj, register }: EmailInputWithV
             placeholder="user_name@mail.ru"
             required
             radius="md"
+            style={{
+                ...(!errorObj?.['email']
+                    ? { marginBottom: '10px' }
+                    : {}
+                ),
+            }}
             {...register("email")}
         />
         {errorObj?.['email'] &&

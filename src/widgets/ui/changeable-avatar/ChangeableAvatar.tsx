@@ -1,6 +1,7 @@
 import { Box } from "@mantine/core";
 import { CssComponent, SimpleAvatar } from "../../../shared";
 import { ChangeEvent } from "react";
+import { UserModel, userModel } from "../../../features";
 
 const css: CssComponent = {
     contentWrap: {
@@ -14,7 +15,7 @@ const css: CssComponent = {
         position: 'relative',
     },
     input: {
-        height: '100px',
+        height: '60px',
         width: '100px',
         cursor: 'pointer',
         border: 0,
@@ -28,22 +29,38 @@ const css: CssComponent = {
 }
 
 type ChangeableAvatarProps = {
-    avatar?: string,
-    initials?: string,
-    handleAvatarChange: (event: ChangeEvent<HTMLInputElement>) => void,
+    userInfo: UserModel,
+    handleChange: (userId: string) => Promise<void>,
 }
 
 export const ChangeableAvatar = ({
-    avatar,
-    initials,
-    handleAvatarChange,
+    userInfo,
+    handleChange,
 }: ChangeableAvatarProps) => {
+
+    const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = async () => {
+                try {
+                    await userModel.updateUser({ ...userInfo, avatar: reader.result as string });
+                    await handleChange(userInfo?.id);
+                }
+                catch (error) {
+                    console.log({ error });
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <Box style={css.contentWrap}>
             <SimpleAvatar
-                link={avatar}
-                userName={initials}
-                size={'xl'}
+                link={userInfo?.avatar}
+                userName={userInfo?.initials}
+                size={'lg'}
             />
             <input
                 type="file"

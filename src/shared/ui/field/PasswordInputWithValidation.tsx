@@ -23,6 +23,12 @@ export const PasswordInputWithValidation = ({ errorObj, register, code = 'passwo
             required
             mt="md"
             radius="md"
+            style={{
+                ...(!errorObj?.[code]
+                    ? { marginBottom: '10px' }
+                    : {}
+                ),
+            }}
             {...register(code)}
         />
         {errorObj?.[code] &&

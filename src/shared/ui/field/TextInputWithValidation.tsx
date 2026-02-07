@@ -32,7 +32,13 @@ export const TextInputWithValidation = ({
             required
             radius="md"
             {...register(code)}
-            style={style}
+            style={{
+                ...(!errorObj?.[code]
+                    ? { marginBottom: '10px' }
+                    : {}
+                ),
+                ...style,
+            }}
         />
         {errorObj?.[code] &&
             <Text style={{ ...css.errorTextStyle, color: mantineTheme.colors.red[8] }}>
