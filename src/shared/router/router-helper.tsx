@@ -1,6 +1,10 @@
-import { RouteCode, routeData } from "./route-data"
+import { RouteCode, routeData } from "./route-data";
 
 export const getRouteCode = (pathname: string): RouteCode => {
     return Object.values(routeData)
         .find(route => route.path === pathname)?.code ?? RouteCode.Authorization;
+}
+
+export const getFullUrl = (path: string, paramKey: string, paramValue: string) => {
+    return path.replace(`:${paramKey}`, paramValue);
 }

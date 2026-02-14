@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import { Box, Button, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
 import { IconMessage2Exclamation } from '@tabler/icons-react';
 import { DialogItemDropdownList } from "./DialogItemDropdownList";
-import { CssComponent, format, getDateWithTimezone, SimpleAvatar, SimpleList, SimpleListItem } from "../../../shared";
+import { CssComponent, format, getDateWithTimezone, getFullUrl, LinkButton, routeData, SimpleAvatar, SimpleList, SimpleListItem } from "../../../shared";
 import { DialogModel, messageModel, useSessionProvider } from "../../../features";
 
 const css: CssComponent = {
@@ -75,7 +75,12 @@ export const DialogList = ({ searchText }: DialogListProps) => {
                     {filteredDialogList.map((item, idx) =>
                         <SimpleListItem
                             key={idx}
-                            primaryValue={item.interlocutor.FIO}
+                            primaryValue={
+                                <LinkButton
+                                    href={getFullUrl(routeData.dialogPage.path, 'dialogId', item.id)}
+                                    name={item.interlocutor.FIO}
+                                />
+                            }
                             secondaryValue={format(getDateWithTimezone(item.lastMessageTime), 'dd.MM.yyyy HH:mm')}
                             avatar={
                                 <SimpleAvatar
