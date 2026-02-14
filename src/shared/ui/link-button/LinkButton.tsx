@@ -11,18 +11,17 @@ const css: CssComponent = {
 }
 
 type LinkButtonProps = {
-    href: string,
+    handleClick: () => void,
     name: string,
 }
 
-export const LinkButton = ({ href, name }: LinkButtonProps) => {
+export const LinkButton = ({ handleClick, name }: LinkButtonProps) => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
 
     return (
         <Button
-            component="a"
-            href={href}
+            onClick={handleClick}
             style={{
                 ...css.linkButton,
                 color: mantineTheme.colors.textColor[colorScheme],

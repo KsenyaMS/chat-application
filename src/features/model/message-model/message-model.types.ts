@@ -1,4 +1,3 @@
-import { Message } from "../../../api";
 import { UserModel } from "../../model";
 
 export type DialogModel = {
@@ -9,7 +8,10 @@ export type DialogModel = {
     id: string,
 }
 
-export type MessageModel = Message & {
-    content: string,
+export type MessageModel = {
+    messageId: string,
+    createdOn: number,
+    userId: string,
     contentId: string,
-}
+    content: string,
+};

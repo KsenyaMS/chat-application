@@ -14,5 +14,6 @@ export type Message = {
 
 export type MessageContent = {
     content: string,
-    contentId: string,
+    id: string,
+    messageId: string,
 }

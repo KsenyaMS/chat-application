@@ -59,7 +59,13 @@ const transformMessageForWeb = async (list: Message[]): Promise<MessageModel[]> 
 
     for (let i = 0; i < list?.length; i++) {
         const content = await messageService.getMessageContent(list[i].id);
-        result.push({ ...list[i], ...content });
+        result.push({
+            messageId: list[i].id,
+            createdOn: list[i].createdOn,
+            userId: list[i].userId,
+            contentId: content.id,
+            content: content.content,
+        });
     }
 
     return result;

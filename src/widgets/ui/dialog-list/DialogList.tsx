@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import { Box, Text, useMantineColorScheme, useMantineTheme } from "@mantine/core";
 import { IconMessage2Exclamation } from '@tabler/icons-react';
 import { DialogItemDropdownList } from "./DialogItemDropdownList";
 import { CssComponent, format, getDateWithTimezone, getFullUrl, LinkButton, routeData, SimpleAvatar, SimpleList, SimpleListItem } from "../../../shared";
 import { DialogModel, messageModel, useSessionProvider } from "../../../features";
+import { useNavigate } from "react-router-dom";
 
 const css: CssComponent = {
     listWrap: { textAlign: 'center', height: '100%', alignContent: 'center' },
@@ -24,6 +25,7 @@ export const DialogList = ({ searchText }: DialogListProps) => {
     const { sessionParams } = useSessionProvider();
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
     const [dialogList, setDialogList] = useState<DialogModel[]>([]);
@@ -77,7 +79,7 @@ export const DialogList = ({ searchText }: DialogListProps) => {
                             key={idx}
                             primaryValue={
                                 <LinkButton
-                                    href={getFullUrl(routeData.dialogPage.path, 'dialogId', item.id)}
+                                    handleClick={() => navigate(getFullUrl(routeData.dialogPage.path, 'dialogId', '1'))}
                                     name={item.interlocutor.FIO}
                                 />
                             }
