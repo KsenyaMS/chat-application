@@ -5,6 +5,7 @@ type ContainerWithTwoValuesProps = {
     secondaryValue: string,
     primaryValueTooltip?: string,
     secondaryValueTooltip?: string,
+    textAlign?: string,
 }
 
 export const ContainerWithTwoValues = ({
@@ -12,11 +13,12 @@ export const ContainerWithTwoValues = ({
     secondaryValue,
     primaryValueTooltip,
     secondaryValueTooltip,
+    textAlign = 'left',
 }: ContainerWithTwoValuesProps) => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
 
-    return <Box style={{ textAlign: 'left' }}>
+    return <Box style={{ textAlign: textAlign }}>
         <Tooltip
             label={primaryValueTooltip}
             disabled={!primaryValueTooltip}

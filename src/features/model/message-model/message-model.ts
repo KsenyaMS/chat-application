@@ -91,3 +91,18 @@ export const fetchMessageList = async (userId: string) => {
         console.log({ err });
     }
 }
+
+export const fetchDialogById = async (userId: string, dialogId: string) => {
+    try {
+        const list = await fetchDialogListByUserId(userId);
+
+        if (!list?.length) {
+            return undefined;
+        }
+
+        return list?.find(item => item.id === dialogId);
+    }
+    catch (err) {
+        console.log({ err });
+    }
+}

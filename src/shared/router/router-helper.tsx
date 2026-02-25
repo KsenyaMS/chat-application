@@ -14,21 +14,22 @@ export const getFullUrl = (path: string, paramKey: string, paramValue: string) =
     return path.replace(`:${paramKey}`, paramValue);
 }
 
-export const getParams = (path: string, routeCode: RouteCode) => {
+export type PathParam = {
+    [key: string]: string | number,
+}
+
+export const getParams = (path: string, routeCode: RouteCode): PathParam | undefined => {
     const pathFromRoute = Object.values(routeData).find(item => item.code === routeCode)?.path?.split('/');
     const activePath = path.split('/');
     const params = pathFromRoute
-        ?.reduce((acc: any[], curVal, idx) => {
+        ?.reduce((acc: PathParam, curVal, idx) => {
             return curVal.includes(':')
-                ? [
+                ? {
                     ...acc,
-                    {
-                        paramName: curVal.replace(':', ''),
-                        paramValue: activePath[idx],
-                    }
-                ]
+                    [curVal.replace(':', '')]: activePath[idx],
+                }
                 : acc
-        }, []);
+        }, {});
 
     return params;
 }
