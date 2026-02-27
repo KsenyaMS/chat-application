@@ -2,6 +2,7 @@ import { Box, useMantineColorScheme, useMantineTheme } from "@mantine/core"
 import { ReactElement } from "react"
 import { CssComponent } from "../../model"
 import { ContainerWithTwoValues } from "../custom-container"
+import { ThemeType } from "../../config"
 
 const css: CssComponent = {
     wrap: {
@@ -39,7 +40,7 @@ export const SimpleListItem = ({
 }: SimpleListItemProps) => {
     const mantineTheme = useMantineTheme();
     const { colorScheme } = useMantineColorScheme();
-    const itemBackgroundIndex = colorScheme === 'light'
+    const itemBackgroundIndex = colorScheme === ThemeType.Light
         ? 6
         : 7;
 

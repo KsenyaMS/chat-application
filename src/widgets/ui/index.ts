@@ -4,3 +4,4 @@ export * from './layout';
 export * from './dialog-list';
 export * from './header';
 export * from './forms';
+export * from './dialog';
